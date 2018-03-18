@@ -1,0 +1,334 @@
+<html>
+      <head>
+	<title>
+          Functional Document Model (FDM)
+        </title>
+      </head>
+       <body bgcolor='#FFFFFF'>
+         <h1>
+          <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/'><img src="Images/fxt.jpg" alt="fxt - " align="CENTER" border="0"></a>
+          The Functional XML Transformation Tool 
+         </h1>
+         <h1>Functional Document Model (FDM)</h1>
+
+	 
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         
+  <p> The signature of
+  the structure including the FDM code gives an overview of the
+  provided features. The names are mostly self-explaining, however a
+  description of the FDM features is given bellow the signature.</p>
+  <blockquote>
+      <pre>signature FDM =
+  sig
+    type Attribute
+    datatype Tree =
+      ELEM of int * Attribute vector * Forest
+    | TEXT of UniChar.Vector
+    | PI of UniChar.Vector * Forest
+    withtype Forest = Tree vector
+
+    val emptyTree : Tree
+    val emptyForest : Forest
+
+    val hasElementType : Unicode.Vector -&gt; Tree -&gt; bool
+    val text : Unicode.Vector -&gt; Tree
+    val element : Unicode.Vector -&gt; Attribute vector -&gt; Tree vector -&gt; Tree
+    val processingInstruction : Unicode.Vector -&gt; Unicode.Vector -&gt; Tree
+    val isElement : Tree -&gt; bool
+    val isText : Tree -&gt; bool
+    val isProcessingInstruction : Tree -&gt; bool
+    val getElementType : Tree -&gt; Unicode.Vector
+    val getElement : Tree -&gt; (Unicode.Vector * Attribute vector * Tree vector)
+    val getText : Tree -&gt; Unicode.Vector
+    val hasTextContent : Tree -&gt; bool
+    val getTextContent : Tree -&gt; Unicode.Vector
+    val getProcessingInstruction : Tree -&gt; (Unicode.Vector*Unicode.Vector)
+    val hasAttribute : Unicode.Vector -&gt; Tree -&gt; bool
+    val getAttribute : Unicode.Vector -&gt; Tree -&gt; Unicode.Vector
+    val Tree2UnicodeVector : Tree -&gt; Unicode.Vector
+    val sons : Tree -&gt; Forest
+
+    val getAttributes : Tree -&gt; Attribute vector
+    val getAttributeValue : Attribute -&gt; Unicode.Vector
+    val getAttributeName : Attribute -&gt; Unicode.Vector
+    val makeAttribute : Unicode.Vector -&gt; Unicode.Vector -&gt; Attribute
+    val replaceAttribute : Attribute vector -&gt; Unicode.Vector -&gt; Unicode.Vector -&gt; Attribute vector
+    val addAttribute : Attribute vector -&gt; Unicode.Vector -&gt; Unicode.Vector -&gt; Attribute vector
+    val addAttributes : Attribute vector -&gt; Attribute vector -&gt; Attribute vector
+    val deleteAttribute : Attribute vector -&gt; Unicode.Vector -&gt; Attribute vector
+    val changeAttribute : Tree -&gt; Unicode.Vector -&gt; Unicode.Vector -&gt; Tree
+    val insertAttribute : Tree -&gt; Unicode.Vector -&gt; Unicode.Vector -&gt; Tree
+    val removeAttribute : Tree -&gt; Unicode.Vector -&gt; Tree
+
+    val fromList : Tree list -&gt; Forest
+    val toList : Forest -&gt; Tree list
+    val length : Forest -&gt; int
+    val lengthPred : (Tree -&gt; bool) -&gt; Forest -&gt; int
+    val sub : Forest * int -&gt; Tree
+    val extract : Forest * int * int option -&gt; Forest
+    val concat : Forest list -&gt; Forest
+    val app : (Tree -&gt; unit) -&gt; Forest -&gt; unit
+    val map : (Tree -&gt; 'a) -&gt; Forest -&gt; 'a vector
+    val foldl : (Tree * 'a -&gt; 'a) -&gt; 'a -&gt; Forest -&gt; 'a
+    val foldr : (Tree * 'a -&gt; 'a) -&gt; 'a -&gt; Forest -&gt; 'a
+    val appi : (int * Tree -&gt; unit) -&gt; Forest * int * int option -&gt; unit
+    val mapi : (int * Tree -&gt; 'a) -&gt; Forest * int * int option -&gt; 'a vector
+    val foldli : (int * Tree * 'a -&gt; 'a) -&gt; 'a -&gt; Forest * int * int option -&gt; 'a
+    val foldri : (int * Tree * 'a -&gt; 'a) -&gt; 'a -&gt; Forest * int * int option -&gt; 'a
+    val deleteAll : (Tree -&gt; bool) -&gt; Forest -&gt; Forest
+    val deleteFirst : (Tree -&gt; bool) -&gt; Forest -&gt; bool * Forest
+    val deleteFirstN : int -&gt; (Tree -&gt; bool) -&gt; Forest -&gt; int * Forest
+    val deleteLast : (Tree -&gt; bool) -&gt; Forest -&gt; bool * Forest
+    val deleteLastN : int -&gt; (Tree -&gt; bool) -&gt; Forest -&gt; int * Forest
+    val deleteIth : int -&gt; Forest -&gt; Forest
+    val filter : (Tree -&gt; bool) -&gt; Forest -&gt; Forest
+    val filterFirst : (Tree -&gt; bool) -&gt; Forest -&gt; Tree
+
+    val countTreeNodes : Tree -&gt; int
+    val countForestNodes : Forest -&gt; int
+
+     
+    val sort : (Tree*Tree -&gt; bool) -&gt; Forest -&gt; Forest
+    (*  use (&gt;=,&lt;=) functions to preserve the order 
+        of elements with equal keys  *)
+      
+    val concatForests : Forest vector -&gt; Forest
+
+    val putTree : Tree -&gt; string -&gt; string option -&gt; unit
+    val putForest : Forest -&gt; string -&gt; string option -&gt; unit
+    val printTree : Tree -&gt; unit
+    val printForest : Forest -&gt; unit
+  end
+</pre>
+    </blockquote>
+  <p>where:</p>
+  <dl>
+    <dt><samp>Tree</samp></dt>
+    <dd>the abstract representation for an XML
+    document or for some part of an XML document</dd> 
+    <dt><samp>Forest</samp></dt>
+    <dd>A sequence of XML trees (as for example the sons of an element
+    node)</dd>
+    <dt><samp>Attribute</samp></dt>
+    <dd>the type of the attributes of XML elements </dd>
+    <dt><samp>emptyTree</samp></dt>
+    <dt><samp>emptyForest</samp></dt>
+    <dd>values provided as representation of the empty XML tree and
+    forest respectively.</dd>
+    <dt><samp>hasElementType</samp></dt>
+    <dd>returns true if the element
+    supplied as the first argument is a node element and has the name
+    supplied as the second argument.  If applied on a non node element
+    or if the node element on which it is applied has not this
+    type (name) false is returned.</dd>
+    <dt><samp>text</samp></dt>
+    <dd>creates a text node with the specified content.</dd>
+    <dt><samp>element</samp></dt>
+    <dd>creates an element node with the name,
+    attributes and the sons vector given as arguments.</dd>
+    <dt><samp>processingInstruction</samp></dt>
+    <dd>creates a processing
+    instruction node for a processor given as the first argument and the
+    content given as the second.</dd>
+    <dt><samp>isElement</samp></dt>
+    <dt><samp>isText</samp></dt>
+    <dt><samp>isProcessingInstruction</samp></dt>
+    <dd>returns true if the node given
+    as argument is an element, text or processing instruction
+    respectively.</dd>
+    <a name='getElementType'></a>
+    <dt><samp>getElementType</samp></dt>
+    <dd>returns the type of the element
+    node given as argument. If the node is not an element an exception
+    is thrown.</dd>
+    <dt><samp>getElement</samp></dt>
+    <dd>returns for an element node a triplet
+    formed of its type, the attributes and the vector of sons. If
+    the node is not an element an exception is thrown.</dd>
+    <dt><samp>getText</samp></dt>
+    <dd>returns for a text node the content of the
+    node. If the node is not a text an exception is thrown</dd>
+    <dt><samp>hasTextContent</samp></dt>
+    <dd>returns true for a text node or for
+    an element node which only contains a text node</dd>
+    <dt><samp>getTextContent</samp></dt>
+    <dd>if applied on a text node returns
+    its content. If applied on an element node which only contains a
+    text node returns the content of this text node. Otherwise an
+    exception is thrown.</dd>
+    <dt><samp>getProcessingInstruction</samp></dt>
+    <dd>returns for a processing
+    instruction node a pair containing the corresponding processor and
+    instruction. If the node is not a processing instruction an exception
+    is thrown.</dd>
+    <dt><samp>hasAttribute</samp></dt>
+    <dd>applied on an element node given as
+    its second argument returns true if the element has an attribute
+    with the name given as the first argument. If the node argument is
+    not an element an exception is thrown.</dd>
+    <dt><samp>getAttribute</samp></dt>
+    <dd>returns for an element node given as
+    the second argument having the attribute given as the first argument
+    the value of this argument. If the node is not an element or if it
+    has not a such attribute an exception is thrown.</dd>
+    <dt><samp>Tree2UniCodeVector</samp></dt>
+  <dd>gives the Unicode string representation for a
+  tree</dd>
+    <dt><samp>sons</samp></dt>
+    <dd>given a tree, returns the forest of itssons</dd>
+    <dt><samp>getAttributes</samp></dt>
+    <dd>returns for an element node a vector containing
+    its attributes. If the node is not an element an exception is
+    thrown.</dd>
+    <dt><samp>getAttributeValue</samp></dt>
+    <dd>returns the value of the attribute given as argument.</dd>
+    <dt><samp>getAttributeName</samp></dt>
+    <dd>returns the name of the attribute given as argument.</dd>
+    <dt><samp>makeAttribute</samp></dt>
+    <dd>creates an attribute with the name
+    given as the first argument and the value given by the second.</dd>
+    <dt><samp>replaceAttribute</samp></dt>
+    <dd>returns a vector obtained by
+    replacing in the vector of attributes given as the first argument the
+    attribute with the name and the value given by the second and the
+    third attribute. If there is no attribute with the given name
+    the vector is returned unchanged as the result.</dd>
+    <dt><samp>addAttribute</samp></dt>
+    <dd>returns a list obtained by adding to
+    the vector of attributes given as the first argument the attribute
+    with the name and the value given by the second and the third
+    attribute. If the vector has the attribute with the given name already
+    the value of this attribute is set to the given value in the
+    returned vector.</dd>
+    <dt><samp>addAttributes</samp></dt>
+    <dd>returns a list obtained by adding to
+    the list of attributes given as the first argument the list of the
+    attributes given as the second argument. If in both lists, attributes
+    of the second list will overwrite those in the first in the returned
+    list.</dd>
+    <dt><samp>deleteAttribute</samp></dt>
+    <dd>returns a vector obtained from the
+    vector of attributes given as the first arguments by deleting the
+    attribute with the name given as the second argument. If no
+    attribute with the given name is present in the input vector the vector
+    is returned unchanged as the result.</dd>
+    <dt><samp>changeAttribute</samp></dt>
+    <dd>returns for an element node the
+    element node obtained by replacing in its attributes list the value
+    of the attribute given as the first argument with the value given as
+    the third argument. If no attribute with the given name is
+    present in the attribute list of the input element node, it is added
+    to the attributes list of the output node. If the input node is not
+    an element an exception is thrown.</dd>
+    <dt><samp>insertAttribute</samp></dt>
+    <dd>returns for an element node the
+    element node obtained by inserting in its attributes list an
+    attribute with the name given as the second argument and the value
+    given as the third.  If the attribute with the given name is already
+    present in the attribute list of the input element node, it is
+    changed to the new value in the output node. If the input node is
+    not an element an exception is thrown.</dd>
+    <dt><samp>removeAttribute</samp></dt>
+    <dd>returns for an element node the
+    element node obtained by removing from its attribute list the
+    element with the name given as the second argument. If no attribute
+    with the given name is present in the attribute list of the input
+    node, the input node is returned unchanged as the result.</dd>
+    <dt><samp>fromList,length, sub, extract, concat, app, map, foldl, foldr,
+    appi, mapi, foldli, foldri</samp></dt>
+    <dd>have the SML
+    signification, given that the type <quote>Forest</quote> is
+    represented as a vector of <quote>Tree</quote>s.</dd>
+    <dt><samp>toList</samp></dt>
+    <dd>transforms a forest in a list of trees</dd>
+    <dt><samp>lengthPred</samp></dt>
+    <dd>given a predicate working on trees and
+    a forest, returns the number of trees in the forest that satisfy the
+    predicate.</dd>
+    <dt><samp>deleteAll</samp></dt>
+    <dd>given a predicate working on trees and a
+    forest, returns a forest obtained from the input forest by
+    eliminating all the trees that satisfy the predicate.</dd>
+    <dt><samp>deleteFirst</samp></dt>
+    <dd>given a predicate working on trees and
+    a forest, returns a pair formed of a boolean and a forest. The
+    boolean indicates if the predicate was fulfilled by any of the trees
+    in the forest.  The output forest is obtained from the input forest
+    by eliminating the first tree that satisfy the predicate.</dd>
+    <dt><samp>deleteFirstN</samp></dt>
+    <dd>given an integer number, a predicate
+    working on trees and a forest returns a pair formed of an integer
+    and a forest. The output forest is obtained from the input forest by
+    eliminating the first trees that satisfy the predicate, in a number
+    that is not greater than the indicated number.  The integer value
+    returned indicates how many
+    trees in the input forest were actually deleted (may be less than
+    the requested number).</dd>
+    <dt><samp>deleteLast</samp></dt>
+    <dd>given a predicate working on trees and
+    a forest, returns a pair formed of a boolean and a forest. The
+    boolean indicates if the predicate was fulfilled by any of the trees
+    in the forest.  The output forest is obtained from the input forest
+    by eliminating the last tree in the forest that satisfy the
+    predicate.</dd>
+    <dt><samp>deleteLastN</samp></dt>
+    <dd>given an integer number, a predicate
+    working on trees and a forest, returns a pair formed of an integer
+    and a forest. The output forest is obtained from the input forest by
+    eliminating the last trees that satisfy the predicate, in a number
+    which is not greater than the indicated number.  The integer value
+    returned indicates how many
+    trees in the input forest were actually deleted (may be less than
+    the requested number).</dd>
+    <dt><samp>deleteIth</samp></dt>
+    <dd>returns a forest obtained by deleting
+    the i-th tree (i given as the first argument) in the forest given as
+    the second argument.</dd>
+    <dt><samp>filter</samp></dt>
+    <dd>given a predicate over trees and a forest returns the trees in
+    the forest that satisfy the predicate.</dd>
+    <dt><samp>filterFirst</samp></dt>
+    <dd>given a predicate over trees and a forest returns the first tree in
+    the forest that satisfies the predicate.</dd>
+
+    <dt><samp>countTreeNodes</samp></dt>
+    <dd>counts the nodes in a tree.</dd>
+    <dt><samp>countForestNodes</samp></dt>
+    <dd>counts the nodes in a forest.</dd>
+
+    <dt><samp>sort</samp></dt>
+    <dd>given an order relationship as a predicate
+    working on a pair of trees and a forest, returns a forest where trees
+    are sorted such that the predicate order is fulfilled.</dd>
+    <dt><samp>concatForest</samp></dt>
+    <dd>concatenates a vector of Forest-s</dd>
+    <dt><samp>putTree</samp></dt>
+    <dd>given a tree, a file name and an encoding
+    option, writes the tree to the specified file in the specified
+    encoding. If the encoding specified is NONE, UTF8 is used.</dd>
+    <dt><samp>putForest</samp></dt>
+    <dd>given a forest, a file name and an
+    encoding option, writes the forest to the specified file in the
+    specified encoding. If the encoding specified is NONE, UTF8 is
+    used.</dd>
+    <dt><samp>printTree</samp></dt>
+    <dd>given a tree prints it at the standard
+    output.</dd>
+    <dt><samp>printForest</samp></dt>
+    <dd>given a forest prints it at the
+    standard output.</dd>
+  </dl>
+ 
+         
+
+	 
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         <ADDRESS>
+           <A HREF='http://www.informatik.uni-trier.de/~aberlea/'>A. Berlea</A>
+          (<A HREF='mailto:aberlea@psi.uni-trier.de'>aberlea@psi.uni-trier.de</A>)
+         </ADDRESS>
+       </body>
+     </html>

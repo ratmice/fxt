@@ -1,0 +1,108 @@
+<html>
+      <head>
+	<title>
+          The Unicode interface
+        </title>
+      </head>
+       <body bgcolor='#FFFFFF'>
+         <h1>
+          <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/'><img src="Images/fxt.jpg" alt="fxt - " align="CENTER" border="0"></a>
+          The Functional XML Transformation Tool 
+         </h1>
+         <h1>The Unicode interface</h1>
+
+	 
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         
+  <p>The <i>Unicode</i> structure provides usefull code for
+  manipulating Unicode characters and strings as presented in the
+  following signature:</p>
+  <blockquote>
+      <pre>sig
+  type Char = word
+  type Data = Char list
+  type Vector = Char Vector.vector
+
+  val nullData : Data
+  val nullVector : Vector
+
+  val Vector2String : Vector -&gt; string
+  val String2Vector : string -&gt; Vector
+  val UnicodeVectorlt : Vector * Vector -&gt; bool
+  val concatVectors : Vector * Vector -&gt; Vector
+
+  val Data2String : Data -&gt; string
+  val Data2Vector : Data -&gt; Vector
+  val String2Data : string -&gt; Data
+  val Vector2Data : Vector -&gt; Data
+  val Vector2StringShort : Vector -&gt; string
+
+  val Char2Uni : Char -&gt; string
+  val Char2String : Char -&gt; string
+  val Char2char : Char -&gt; char
+  val char2Char : char -&gt; Char
+  val compareChar : Char * Char -&gt; order
+end
+</pre>
+    </blockquote>
+  <p>whith the following meaning:</p>
+  <dl>
+    <dt><samp>Char</samp></dt>
+    <dd>the type for Unicode characters, represented as the SML word
+    type</dd>
+    <dt><samp>Data</samp></dt>
+    <dd>the type for Unicode data, represented as Char list</dd>
+    <dt><samp>Vector</samp></dt>
+    <dd>the type for Unicode strings, represented as Char vector</dd>
+    <dt><samp>nullData</samp></dt>
+    <dd>the empty Unicode data</dd>
+    <dt><samp>nullVector</samp></dt>
+    <dd>the empty Unicode string</dd>
+    <dt><samp>Vector2String</samp></dt>
+    <dd>conversion function from Vector to String</dd>
+    <dt><samp>String2Vector</samp></dt>
+    <dd>conversion function from String to Vector</dd>
+    <dt><samp>UnicodeVectorlt</samp></dt>
+    <dd>"less than" function for Vectors</dd>
+    <dt><samp>concatVectors</samp></dt>
+    <dd>function to concatenate two Vectors</dd>
+    <dt><samp>Data2String</samp></dt>
+    <dd>conversion function from Data to String</dd>
+    <dt><samp>Data2Vector</samp></dt>
+    <dd>conversion function from Data to Vector</dd>
+    <dt><samp>String2Data</samp></dt>
+    <dd>conversion function from String2Data</dd>
+    <dt><samp>Vector2Data</samp></dt>
+    <dd>conversion function from Vector to Data</dd>
+    <dt><samp>Vector2StringShort</samp></dt>
+    <dd>conversion function from Vector to String; if the vector is
+    longer than a predifined size, its string representation is
+    truncated using "...".</dd>
+    <dt><samp>Char2Uni</samp></dt>
+    <dd>conversion function from Char to string, as
+    "U+UnicodeIndex"</dd>
+    <dt><samp>Char2String</samp></dt>
+    <dd>conversion function from Char to string; if the character is
+    printable than the string is the character itself, otherwise a
+    "+U.." representation</dd>
+    <dt><samp>Char2char</samp></dt>
+    <dd>conversion function from Char to char</dd>
+    <dt><samp>char2Char</samp></dt>
+    <dd>conversion function from char to Char</dd>
+    <dt><samp>compareChar</samp></dt>
+    <dd>function to compare to Char-s</dd>
+  </dl>
+
+         
+
+	 
+
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         <ADDRESS>
+           <A HREF='http://www.informatik.uni-trier.de/~aberlea/'>A. Berlea</A>
+          (<A HREF='mailto:aberlea@psi.uni-trier.de'>aberlea@psi.uni-trier.de</A>)
+         </ADDRESS>
+       </body>
+     </html>

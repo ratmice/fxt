@@ -1,0 +1,132 @@
+From 4.0 to 4.1 (using fxgrep version 4.1)
+====================
+(05.06.2003)
+Uses as pattern the fxgrep patterns allowing matches to be specifies
+via formulas
+
+From 3.0 to 4.0 (using fxgrep version 4.0)
+====================
+(18.02.2003)
+Changes in the interface to fxgrep to allow for fxgrep patterns with
+conjunctions and negations of paths.
+Updated automatic translation to binary match patterns.
+Updated documentation.
+(15.10.2002)
+Automatic translation of select patterns to binary match patterns.
+
+From 2.1.2 to 3.0
+====================
+(03.09.2002)
+updated documentation
+nodes can be selected using binary fxgrep patterns
+(07.05.2002)
+added --literal option
+removed fxt:literate
+removed literateText from FDM signature
+
+From 2.1.1 to 2.1.2
+====================
+(08.04.2002)
+Small modification in the interface to fxgrep2
+(08.03.2002)
+Removed a bug occuring when using global variables
+Updated documentation
+
+From 2.1 to 2.1.1
+====================
+(01.03.2002)
+Modified makefiles to improve the convenience of using generated code
+from within other SML code
+
+(14.01.2002)
+Removed possibility of name conflicts between globals and internal
+variables
+
+From 2.0 to 2.1
+====================
+(17.09.2001)
+Added profiling code
+
+(21.09.2001)
+Modified the generated code for sorting forests (to compensate for the
+SML function ListMergeSort.sort which does not preserve the order of
+elements with equal keys)
+
+(27.09.2001)
+Improved extra matching for filling in tables
+
+(1.10.2001)
+Added selectExp attribute in fxt:apply to allow info from the input to
+be used in dynamic pattern matching
+
+(23.10.2001)
+Corrected error in the output of types (added parentheses)
+
+(17.11.2001)
+Added fxt:inc element
+
+From 1.3 to 2.0
+====================
+(27.08.2001)
+
+Internal changes:	
+Drastically reduced the compilation time.
+Minimized the size of the SML generated code.
+
+Improved compile error messages.
+Added options and help for the transformation.
+
+New options for fxt:
+  -i xmlInputFile
+  -o xmlOutputFile
+If an xmlInputFile is specified and possibly an XML output file, 
+at the compile time than the generated transformation is consequently
+called with the XML input and output as arguments. Useful when the
+transformation is used only once.
+
+From 1.2 to 1.3 
+====================
+(10.07.2001)
+
+fxt:addAttribute, fxt:deleteAttribute, fxt:replaceAttribute,
+fxt:copyTagAddAttribute, fxt:copyTagDeleteAttribute,
+fxt:copyTagReplaceAttribute, fxt:attribute: 
+  The former name and val attributes have changed names to nameExp and
+  valExp respectively. Instead, one can now directly specify the name
+  or the value of the involved attribute as values for a name or a val
+  attribute respectively.
+
+fxt:pi
+  The former processor and data attributes have changed names to
+  processorExp and dataExp respectively. Instead, one can now directly
+  specify the processor and the data value of the processing
+  instruction to be generated as values for a processor or a data
+  attribute respectively.
+
+(5.07.2001)
+
+Added support for keys
+
+
+From 1.1 to 1.2 
+====================
+(17.04.2001)
+
+Select patterns (dynamic pattern matching) are allowed in fxt:apply
+  and fxt:copyContent
+
+Fixed a bug in the script generation 
+
+From 1.0 to 1.1
+====================
+(15.03.2001)
+
+Fixed a bug (a name-conflict): 
+  a test attribute in fxt:apply was intepreted  both
+  as a predicate specifying the sons on which the transformation
+  must proceed and a filter for the output forest. Filtering is now
+  indicated by an attribute named filter.
+
+Added shortcuts for often used elements:
+  fxt:currentText, fxt:ht, fxt:cr, fxt:sp, fxt:attribute
+  

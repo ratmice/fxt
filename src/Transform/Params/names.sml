@@ -1,0 +1,22 @@
+structure Names =
+  struct
+    val outputDir = "TF"
+    val toOpen = " Fdm Shortcuts Unicode Util Vector"
+    val doitFunction = "doit"
+    val elementConstructor = "eC"
+    val elementConstructor2 = "eC2"
+    val inputFile = "inputFile"
+    val prelucratedSons = "prelucratedSons"
+    val accumulatedAttributes = "accumulatedAttributes"
+    val default = "default"
+    val functionName = "trans"
+    val docArgument = "d"
+    val fxtStructure = "Fxt"
+    val globalsStructure = "G"
+    val documentStructure = "Doc"
+    val keyTablesStructure = "KeyTables"
+    val keyNames = "NAMES"
+    val stringKeyTablesStructure = "StringKeyTables"
+    val stringKeyNames = "NAMES"
+    val current = "current"
+  end

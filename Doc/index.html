@@ -1,0 +1,158 @@
+<html>
+      <head>
+	<title>
+          fxt - generator of XML documents transformers
+        </title>
+      </head>
+       <body bgcolor='#FFFFFF'>
+         <h1>
+          <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/'><img src="Images/fxt.jpg" alt="fxt - " align="CENTER" border="0"></a>
+          The Functional XML Transformation Tool 
+         </h1>
+         <h1>fxt - generator of XML documents transformers</h1>
+
+	 
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         
+    <A NAME='WHAT'></A>
+    <a name='What_is_fxt'>
+      
+    </a><h2>1. What is fxt</h2><p>
+      <p><i>fxt</i> (the <i>f</i>unctional <i>x</i>ml <i>t</i>ransformer) is a transformation
+      tool for <a href='http://www.w3.org/TR/REC-xml'><b>XML</b></a>
+      documents. <i>fxt</i> generates code to perform
+      transformations of XML documents according to a given
+      specification. The specification indicates how the generated
+      transformation code will process an XML input
+      document. Depending on the specification, the output
+      of the transformation can be 
+      another XML document or an integer, string, etc.</p>
+      <p><i>fxt</i> is written in the functional language of 
+      <a href='http://plan9.bell-labs.com/cm/cs/what/smlnj/'><b>SML of NJ</b></a> . SML of NJ must
+      be installed on the host system in order to run <i>fxt</i>. SML
+      programming knowledge is not required. However, it may prove
+      useful for taking advantage of the full computational power of the SML
+      language in the XML document processing.</p>
+      <p>The idea of <i>fxt</i> is to combine the <b>computational power of
+      SML</b>, a functional programming language well suited for
+      <i>tree processing</i> (which is to what XML
+      document processing mainly reduces),and the <b>expressivity of
+      pattern matching</b> over XML documents, provided by
+      <a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/'><b>fxgrep</b></a>,
+      a powerful pattern matcher for XML
+      documents.</p>
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+    <p></p>
+    <A NAME='VERSION'></A>
+    <a name='Version'>
+      
+    </a><h2>2. Version</h2><p>
+      <p><b>New:</b> fxt can now use <a href='userGuide.html#BINSELECT'><b>binary match patterns for node
+      selection.</b></a></p>
+
+      <p>The current release is the release 4.1. Changes from the
+      previous versions are described <a href='CHANGES'><b>here</b></a>.</p>
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+    <p></p>
+    <A NAME='DOWNLOAD'></A>
+    <a name='Downloading'>
+      
+    </a><h2>3. Downloading</h2><p>
+      <p>The source code for fxt can be downloaded by 
+      <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/fxt.tar.gz'><b>http</b></a>. The Copyright note is <a href='COPYRIGHT'><b>here</b></a>.</p>
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+    <p></p>
+    <A NAME='INSTALL'></A>
+    <a name='Installation_guide'>
+      
+    </a><h2>4. Installation guide</h2><p>
+      <p>In order to install <i>fxt</i>, you need an SML compiler. The
+      current version of <i>fxt</i> has been tested with version 110.0.7
+      of SML of New Jersey, but it might also run with other
+      versions. The compiler must have the compilation manager (CM)
+      built in, which is the default when installing SML-NJ. 
+      
+      </p>
+      <p>These are the steps for installing fxt under Unix:</p>
+      <p><pre>
+          1. <a href='http://www.informatik.uni-trier.de/~aberlea/Fxp/fxp.tar.gz'><b>Download</b></a> and install the latest version of fxp (the XML parser). 
+             It suffices to install the <i>fxlib</i> library.
+               (<a href='http://www.informatik.uni-trier.de/~aberlea/Fxp/'><b>http://www.informatik.uni-trier.de/~aberlea/Fxp/)</b></a>; 
+          2. <a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/fxgrep.tar.gz'><b>Download</b></a> and install the latest version of fxgrep (the XML
+             query tool). It suffices to install the <i>fxgreplib</i> library.
+               (<a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/'><b>http://www.informatik.uni-trier.de/~aberlea/Fxgrep/</b></a>); 
+          3. <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/fxt.tar.gz'><b>Download</b></a> the latest version of fxt (the transformation
+             language itself);
+          4. Unpack the sources, and change to the fxt directory, e.g.: 
+
+             gunzip -c fxt-4.1.tar.gz | tar xf -
+             cd fxt-4.1
+
+          5. Read the COPYRIGHT; 
+          6. Edit the Makefile according to your needs. Probably you will only have 
+             to change the following: 
+
+             FXP_LIBDIR     is where the fxp library was installed. This should
+                            be set to the same path as for the installation of
+                            fxp; it must contain the file fxlib.cm. Make sure
+                            that fxp was compiled with the same version of SML-NJ.
+             FXGREP_LIBDIR  is where the fxgrep library was installed. This should
+                            be set to the same path as for the installation of
+                            fxgrep; it must contain the file fxgrep.cm. Make sure
+                            that fxgrep was compiled with the same version of SML-NJ.             
+             FXT_BINDIR     is where the executable will be installed; 
+             FXT_LIBDIR     is where the heap image of fxt will be installed; 
+             SML_BINDIR     is the directory where the SML executables are found. 
+                            It must contain the .arch-n-opsys script from the 
+                            SML-NJ distribution, so make sure that this is where 
+                            SML-NJ is physically installed; 
+             SML_EXEC       is the name of the SML executable. This is the program 
+                            that is called for generating the heap image and at 
+                            execution of fxt. If sml will be in your PATH at 
+                            installation time, you don't need the full path here. 
+
+          7. Compile fxt by typing make; 
+          8. Install fxt by typing make install. 
+
+          If you experience problems installing fxt, send me a mail.</pre></p>
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+    <a name='User_guide'>
+      
+    </a><h2>5. User guide</h2><p>
+      <p>The user guide is <a href='userGuide.html'><b>here.</b></a></p>
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+    <a name='Credits'>
+      
+    </a><h2>6. Credits</h2><p>
+
+    <p>Authors of <i>fxt</i> are A. Berlea, A. Neumann and
+    H. Seidl. <i>fxt</i> is developed within the <a href='http://www.informatik.uni-trier.de/PSI/DocML/index.html'><b>DocML
+    project</b></a> financed by the DFG Research Foundation. </p>
+
+    </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+
+
+         
+
+	 
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         <ADDRESS>
+           <A HREF='http://www.informatik.uni-trier.de/~aberlea/'>A. Berlea</A>
+          (<A HREF='mailto:aberlea@psi.uni-trier.de'>aberlea@psi.uni-trier.de</A>)
+         </ADDRESS>
+       </body>
+     </html>

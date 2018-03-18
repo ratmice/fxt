@@ -1,0 +1,2774 @@
+<html>
+      <head>
+	<title>
+          fxt's User Guide
+        </title>
+      </head>
+       <body bgcolor='#FFFFFF'>
+         <h1>
+          <a href='http://www.informatik.uni-trier.de/~aberlea/Fxt/'><img src="Images/fxt.jpg" alt="fxt - " align="CENTER" border="0"></a>
+          The Functional XML Transformation Tool 
+         </h1>
+         <h1>fxt's User Guide</h1>
+
+	 <p><IMG SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p><h2>Contents:</h2>
+      <br>
+      <a href='#The_transformation_procedure'>
+        
+        1. The transformation procedure
+      </a>
+      <br>
+      <a href='#The_specification'>
+        
+        2. The specification
+      </a>
+      <br>
+      <a href='#Invocations'>
+        
+        3. Invocations
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#The_generation_phase'>
+        
+        3.1. The generation phase
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#The_transformation_phase'>
+        
+        3.2. The transformation phase
+      </a>
+      <br>
+      <a href='#fxt_s_Functional_Document_Model_(FDM)'>
+        
+        4. fxt's Functional Document Model (FDM)
+      </a>
+      <br>
+      <a href='#fxt_actions'>
+        
+        5. fxt actions
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Normal_elements'>
+        
+        5.1. Normal elements
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#The_default_action'>
+        
+        5.2. The default action
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:apply'>
+        
+        5.3. fxt:apply
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#Selecting_nodes_using_binary_patterns'>
+      
+      5.3.1 Selecting nodes using binary patterns
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyContent'>
+        
+        5.4. fxt:copyContent
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#Selecting_nodes_using_binary_patterns'>
+      
+      5.4.1 Selecting nodes using binary patterns
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyType'>
+        
+        5.5. fxt:copyType
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyAttributes'>
+        
+        5.6. fxt:copyAttributes
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:addAttribute,_fxt:deleteAttribute_and_____fxt:replaceAttribute'>
+        
+        5.7. fxt:addAttribute, fxt:deleteAttribute and     fxt:replaceAttribute
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:current'>
+        
+        5.8. fxt:current
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyTag'>
+        
+        5.9. fxt:copyTag
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyTagApply'>
+        
+        5.10. fxt:copyTagApply
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:copyTagDeleteAttribute,_fxt:copyTagAddAttribute_and_____fxt:copyTagReplaceAttribute'>
+        
+        5.11. fxt:copyTagDeleteAttribute, fxt:copyTagAddAttribute and     fxt:copyTagReplaceAttribute
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Producing_elements_with_computed_names'>
+        
+        5.12. Producing elements with computed names
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Producing_computed_text'>
+        
+        5.13. Producing computed text
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#fxt:currentText'>
+      
+      5.13.1 fxt:currentText
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#Spaces,_tabs_and_newlines'>
+      
+      5.13.2 Spaces, tabs and newlines
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#Outputting_attribute_values'>
+      
+      5.13.3 Outputting attribute values
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Producing_processing_instructions'>
+        
+        5.14. Producing processing instructions
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Using_global_variables'>
+        
+        5.15. Using global variables
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:setForest_and_fxt:pushForest'>
+        
+        5.16. fxt:setForest and fxt:pushForest
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Conditional_processing'>
+        
+        5.17. Conditional processing
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#fxt:if'>
+      
+      5.17.1 fxt:if
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <a href='#fxt:switch'>
+      
+      5.17.2 fxt:switch
+    </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:sml'>
+        
+        5.18. fxt:sml
+      </a>
+      <br>
+      <a href='#Keys'>
+        
+        6. Keys
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxt:applyKey'>
+        
+        6.1. fxt:applyKey
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Tables_of_strings'>
+        
+        6.2. Tables of strings
+      </a>
+      <br>
+      <a href='#Command_line_arguments'>
+        
+        7. Command line arguments
+      </a>
+      <br>
+      <a href='#Importing_SML_code'>
+        
+        8. Importing SML code
+      </a>
+      <br>
+      <a href='#Pre-actions'>
+        
+        9. Pre-actions
+      </a>
+      <br>
+      <a href='#Sorting,_filtering_and_finalizing_forests'>
+        
+        10. Sorting, filtering and finalizing forests
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Sorting_forests'>
+        
+        10.1. Sorting forests
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Filtering_and_finalizing_forests'>
+        
+        10.2. Filtering and finalizing forests
+      </a>
+      <br>
+      <a href='#Reserved_names'>
+        
+        11. Reserved names
+      </a>
+      <br>
+      <a href='#Handling_white_spaces'>
+        
+        12. Handling white spaces
+      </a>
+      <br>
+      <a href='#Error_reporting'>
+        
+        13. Error reporting
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Parse_errors'>
+        
+        13.1. Parse errors
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#fxgrep_errors'>
+        
+        13.2. fxgrep errors
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#Specification_errors'>
+        
+        13.3. Specification errors
+      </a>
+      <br>
+      &nbsp;
+      &nbsp;
+      <a href='#SML_coding_and_runtime_errors'>
+        
+        13.4. SML coding and runtime errors
+      </a>
+      <br>
+      <a href='#Features_to_be_implemented_in_future_releases'>
+        
+        14. Features to be implemented in future releases
+      </a>
+      <br>
+      <a href='#More_Elaborated_fxt_Examples'>
+        
+        15. More Elaborated fxt Examples
+      </a>
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         
+  <a name='The_transformation_procedure'>
+      
+    </a><h2>1. The transformation procedure</h2><p>
+    <p>The application of <i>fxt</i> proceeds in two
+    phases. 
+    In the <i>generation phase</i> <i>fxt</i>
+    generates the desired transformer from a specification:</p>
+    <img src='Images/generation.jpg' vspace='20'></img>
+    <p>The
+    generated transformer can be subsequently used to transform XML
+    documents:</p>
+    <img src='Images/transformation.jpg' vspace='20'></img>
+    <p>Output of the transformation is a sequence of text, XML
+    elements, and processing instructions.</p>
+
+    <p>A transformation is specified by a sequence of <i>match
+    patterns</i> and corresponding <i>actions</i>.</p>
+    <p>The transformation proceeds top-down over the hierarchical
+    structure of the input document. At a sub-document in the
+    hierarchy, the sequence of actions corresponding to the first
+    matching pattern is performed.</p> 
+
+    <p><b>Note:</b> The match patterns in the specification
+    always refer to the initial input document, not to the current
+    sub-document under consideration.</p>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  
+  <a name='The_specification'>
+      
+    </a><h2>2. The specification</h2><p>
+    <a name='fxt:spec'>
+      
+      
+    </a> <a name='fxt:pat'>
+      
+      
+    </a> 
+
+    <p>The specification is expected to reside in a file having the
+    <i>tf</i> file extension. The specification must be a
+    valid XML document with <b>fxt:spec</b> as root element.</p>
+    <p>The <i>fxt:spec</i> element can contain one or more
+    <b>fxt:pat</b> elements, each of them specifying a match
+    pattern as its content.  Patterns must be specified in the pattern
+    language of <a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/'><b>fxgrep</b></a>,
+    a language similar with <a href='http://www.w3.org/TR/xpath'><b>XPath</b></a>. A description of
+    fxgrep patterns is <a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/pattern.html#PAT'><b>here</b></a>.</p>
+
+    <a name='DEFAULT'></a> 
+
+    <p>Besides <i>fxgrep</i> patterns, a pattern
+    <b>default</b> can be used for matching any sub-document in
+    an XML document.</p>
+
+    <p>Every <i>fxt:pat</i> element is followed by a sequence
+    of <i>fxt</i> actions specifying the result to be produced
+    by the transformation for the sub-documents of the XML input
+    document matching the pattern.  The sequence of actions consists
+    of the sequence of sub-documents between the triggering
+    <i>fxt:pat</i> element and the next <i>fxt:pat</i>
+    element or the end of the specification.</p>
+
+    <p>The result of an <i>fxt</i> action is a sequence of XML
+    sub-documents. The result of a sequence of <i>fxt</i>
+    actions is the concatenation of the result of the
+    <i>fxt</i> actions in the sequence.</p>
+
+    <p>The following is a specification of a transformation, which
+    given an XML document, produces a list of titles of the sections
+    in the document:</p>
+
+    <blockquote>
+      <pre>&lt;fxt:spec&gt;
+
+  &lt;fxt:pat&gt;/*&lt;/fxt:pat&gt;
+     &lt;ul&gt;
+       &lt;fxt:apply/&gt;
+     &lt;/ul&gt;
+
+  &lt;fxt:pat&gt;//section/title/""&lt;/fxt:pat&gt;
+     &lt;li&gt;
+       &lt;fxt:current/&gt;
+     &lt;/li&gt;
+
+  &lt;fxt:pat&gt;default&lt;/fxt:pat&gt;
+     &lt;fxt:apply/&gt;
+
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote> 
+
+    <p>The first match pattern in the example above, <i>/*</i>
+    matches the topmost element of the document to be transformed. The
+    corresponding action specifies that the result must be an element
+    of type <i>ul</i>, whose content is given by the
+    <i>fxt:apply</i> action. The result of this action is the
+    sequence of sub-documents obtained by applying the transformation
+    recursively to the content of the current sub-document (which is
+    here the topmost element).</p> 
+
+    <p>The second rule says , that whenever text is found inside the
+    <i>title</i> element of a <i>section</i>, a new
+    <i>li</i> element should be created whose content is the
+    matched text. The currently matched sub-document (which is here the
+    matched text) is returned by the action
+    <i>fxt:current</i>.</p> 
+
+    <p>The rule for the default pattern says, that the transformation
+    should otherwise simply proceed to the sequence of sub-documents in
+    the content.</p> 
+
+    <p>Running the generated transformation on the following XML
+    document:</p> 
+
+    <a name='INTRO_EXAMPLE'></a>
+
+    <blockquote>
+      <pre>&lt;document&gt;
+	&lt;title&gt;Sections&lt;/title&gt;
+	&lt;section&gt;
+		&lt;title&gt;Section One&lt;/title&gt;
+		&lt;content&gt;Here is section 1...&lt;/content&gt;
+	&lt;/section&gt;
+	&lt;section&gt;
+		&lt;title&gt;Section Two&lt;/title&gt;
+		&lt;content&gt;Here is section 2...&lt;/content&gt;
+	&lt;/section&gt;
+&lt;/document&gt;
+</pre>
+    </blockquote> 
+
+    <p>produces:</p>
+
+    <blockquote>
+      <pre>&lt;ul&gt;
+       &lt;li&gt;
+       Section One
+     &lt;/li&gt;&lt;li&gt;
+       Section Two
+     &lt;/li&gt;
+     &lt;/ul&gt;
+</pre>
+    </blockquote>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='INVOCATIONS'></a>
+  <a name='Invocations'>
+      
+    </a><h2>3. Invocations</h2><p>
+    <a name='The_generation_phase'>
+      
+    </a><h3>3.1. The generation phase</h3><p>
+      <p><i>fxt</i> takes as its input the specification of a
+      transformation and generates SML files, a heap-image and a script
+      to perform the required
+      transformation.</p>
+      <p><i>fxt</i> can be invoked with a command of the
+      following form:</p>
+      <blockquote><pre>fxt [options] [specificationFile]</pre></blockquote>
+      <p>The following options are available:</p>
+      <dl>
+        <dt><samp>-x</samp></dt>
+        <dt><samp>--no-executable</samp></dt>
+        <dd>A heap image for the generated SML code is not produced. A script for
+        running the transformation from the shell is not
+        generated. SML code is generated but not compiled.
+        This option is useful when the
+        generated transformation code is to be used from within other
+        SML code, and not directly from the shell.</dd>
+        <dt><samp>-i inputFile [-o outputFile]</samp></dt>
+        <dd>If an input and possibly an output file are specified, then
+        the generated code is directly applied on the input file and
+        the result is written in the output file or at the standard
+        output if no output option is specified. No heap image and
+        executable are produced. This is useful when the
+        transformation is only applied once, by saving the separate
+        transformation phase. This option should not be used if the
+        transformation is to be used more than once. Instead a
+        transformation should be generated and executed on different
+        inputs, since this avoids the repeated generation and
+        compilation.</dd>
+        <dt><samp>-s</samp></dt>
+        <dt><samp>--silent</samp></dt>
+        <dd>Suppress reporting of errors and warnings</dd>
+        <dt><samp>-e &lt;file&gt;</samp></dt>
+        <dt><samp>--error-output=&lt;file&gt;</samp></dt>
+        <dd>Redirect error to file (stderr)</dd>
+        <dt><samp>--profile</samp></dt>
+        <dd>Reports time-performance</dd>
+        <dt><samp>--literal</samp></dt>
+        <dd>Do not escape &lt;,& and > in the output</dd>
+        <dt><samp>--version</samp></dt>
+        <dd>Print the version number and exit</dd>
+        <dt><samp>-?</samp></dt>
+        <dt><samp>--help</samp></dt>
+        <dd>Print a help message</dd>
+        <dt>--</dt>
+        <dd>Do not recognize remaining arguments as options</dd>
+      </dl>
+      <p>Additionally, <i>fxt</i> understands all <a href='http://www.informatik.uni-trier.de/~aberlea/Fxp/fxp.html#OPT'><b>options</b></a>
+      documented for <i>fxp</i>, except the <samp>-i</samp>
+      option which is reserved for the input file.</p>
+
+      <p> <i>specificationFile</i> must be a file containing
+      the specification of the transformation to be generated. If no
+      arguments are provided the specification
+      is read from the standard input.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='The_transformation_phase'>
+      
+    </a><h3>3.2. The transformation phase</h3><p>
+      <p>Invoking <i>fxt</i> with a
+      specification file
+      <i>name.ext</i> generates SML code to perform the
+      required transformation. If the output of an executable is
+      not disabled, the generated SML code is
+      compiled and can be used via a generated shell script named
+      <i>name.sh</i>
+      for transforming XML documents according to
+      the given specification. The transformation can be subsequently invoked
+      by :</p>
+       
+      <blockquote><pre>name.sh [option ...] [argument ...]</pre></blockquote>
+      <p>The following options are available:</p>
+      <dl>
+        <dt><samp>-i &lt;file></samp></dt>
+        <dt><samp>--input=&lt;file></samp></dt>
+        <dd>Read input for the transformation from file. If no input file is
+        specified, input is read from the standard input.</dd>
+        <dt><samp>-o &lt;file></samp></dt>
+        <dt><samp>--output=&lt;file></samp></dt>
+        <dd>Write output of the transformation to file. If no output
+        file is specified output is written to standard output.</dd>
+	<dt><samp>-s</samp></dt>
+        <dt><samp>--silent</samp></dt>
+        <dd>Suppress reporting of errors and warnings</dd>
+        <dt><samp>-e &lt;file&gt;</samp></dt>
+        <dt><samp>--error-output=&lt;file&gt;</samp></dt>
+        <dd>Redirect error to file (stderr)</dd>
+	<dt><samp>--encoding=&lt;encodingName></samp></dt>
+	<dd>Encode the output in the specified format. This may be one
+	of the following:
+      ANSI_X3.4-1968, ANSI_X3.4-1986, ASCII, US-ASCII, US, ISO646-US,
+      ISO-IR-6,
+      ISO_646.IRV:1991, IBM367, CP367, EBCDIC, ISO_8859-1:1987, ISO-8859-1, 
+      ISO_8859-1, ISO-IR-100, CP819, IBM819, L1, LATIN1,UCS-2, 
+      ISO-10646-UCS-2,UCS-4, ISO-10646-UCS-4, UTF-16 or UTF-8.</dd>
+        <dt><samp>-?</samp></dt>
+        <dt><samp>--help</samp></dt>
+        <dd>Print a help message</dd>
+        <dt>--</dt>
+        <dd>Do not recognize remaining arguments as options</dd>
+      </dl>	
+      <p>Additionally, <i>fxt</i> understands all <a href='http://www.informatik.uni-trier.de/~aberlea/Fxp/fxp.html#OPT'><b>options</b></a>
+      documented for <i>fxp</i>, except the <samp>-i</samp>
+      option which is reserved for the input file.</p>
+
+      <p>Further, <samp>argument</samp>-s must be provided only if the
+      transformation requires some extra arguments. </p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  
+  
+  
+  
+  
+  
+  <a name='fxt_s_Functional_Document_Model_(FDM)'>
+      
+    </a><h2>4. fxt's Functional Document Model (FDM)</h2><p>
+    <p>Conceptually, XML documents are textual descriptions of trees,
+    called <i>document trees</i>. Such a tree representation is
+    provided by an XML parser. Constituting parts of a document tree
+    are XML elements, text content and processing
+    instructions. Accordingly, a document tree is composed of
+    <i>element</i>, <i>text</i> and <i>processing
+    instruction nodes</i>. XML comments are ignored.</p> <p>The
+    generated transformation has access to the tree representation via
+    the
+    <i>current node</i> which represents the sub-document being
+    currently transformed and which can be referred to as
+    <b>current</b>.</p>
+    <p><i>fxt</i>'s FDM (Functional Document Model) is an
+    interface providing useful functions for manipulating XML
+    documents. FDM is described <a href='fdm.html'><b>here</b></a>.</p>
+    <p>In the following examples we will
+    use functions provided by the FDM. XML documents can contain any
+    legal Unicode character. SML, however, supports only 8-bit
+    characters and has no notion of Unicode. Therefore, a structure
+    <b>Unicode</b> is provided as a Unicode
+    interface containing types for the Unicode
+    characters and strings, along with basic functions for
+    manipulating them. Unicode strings are represented by the type
+    <b>Unicode.Vector</b>. Therefore, anywhere XML character
+    data must be specified as SML
+    code, the specified code must evaluate to a value of type
+    <b>Unicode.Vector</b>. Values of the SML type
+    <i>string</i> and SML functions for the string
+    manipulation can be used to specify XML characters in combination
+    with
+    the conversion functions <b>Unicode.String2Vector</b> and
+    <b>Unicode.Vector2String</b>. The <i>Unicode</i>
+    structure is presented <a href='unicode.html'><b>here</b></a>. The <i>Unicode</i>
+    structure is automatically opened in the generated code, thus the
+    functions provided can be used un-prefixed by <i>Unicode.</i>.</p>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='fxt_actions'>
+      
+    </a><h2>5. fxt actions</h2><p>
+    <p>In the following, a description of the
+    <i>fxt</i> actions is given.</p>
+    <a name='Normal_elements'>
+      
+    </a><h3>5.1. Normal elements</h3><p>
+      <p>Elements not prefixed by
+      <i>fxt:</i> (<i>normal elements</i>) appearing in actions are exactly
+      reproduced in the output of the transformation.</p>
+      <p>As an example consider the following transformation:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;*&lt;/fxt:pat&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;Example&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>The generated transformation transforms any XML document (whose
+      root is matched by <i>*</i>) to an empty HTML
+      document:</p>
+      <blockquote>
+      <pre>&lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;Example&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+    </blockquote>
+      <p>The previous example is not very interesting, as the input
+      document is not considered when producing the output. For a
+      reasonable transformation we need to recursively use the
+      transformation on
+      sub-documents of the initial input document.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='The_default_action'>
+      
+    </a><h3>5.2. The default action</h3><p>
+      <p>If a <a href='#DEFAULT'><b>default</b></a> pattern is not specified, an
+      action is added by default. The default action is to be performed when the
+      transformation is applied on a sub-document that does not match
+      any other specified pattern. The default action
+      produces a sub-document that has the root of the matched
+      sub-document as its root and the
+      result of applying the transformation on the content of the
+      matched sub-document as its content.</p>
+      <p>The following specification uses an explicit action and the
+      <i>default</i> action to generate a transformation where
+      all <i>italic</i> elements are replaced by
+      <i>i</i> elements containing the text "Hello!":</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//italic&lt;/fxt:pat&gt;
+    &lt;i&gt;Hello!&lt;/i&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>For the following XML document:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;italic&gt;Some text written in italic&lt;/italic&gt;
+  &lt;bold&gt;
+    &lt;italic&gt;Some text written in bold-italic&lt;/italic&gt;
+  &lt;/bold&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>the generated transformation produces:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;i&gt;Hello!&lt;/i&gt;
+  &lt;bold&gt;
+    &lt;i&gt;Hello!&lt;/i&gt;
+  &lt;/bold&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:apply'>
+      
+      
+    </a>
+    <a name='fxt:apply'>
+      
+    </a><h3>5.3. fxt:apply</h3><p>
+      <p>The <b>fxt:apply</b> element produces a sequence of
+      sub-documents by concatenating the results of recursively
+      applying the transformation on the content of the current
+      sub-document.</p> <p><i>fxt:apply</i> may have an
+      attribute <i>test</i> whose value must be a predicate
+      over trees (<i>Tree -> bool</i>). In this case the
+      transformation is recursively applied only on the sub-documents
+      (i.e. <i>Tree</i>s) satisfying the predicate.</p> <p>The
+      transformation specified in the previous subsection replaced
+      <i>italic</i> elements by <i>i</i> elements with
+      some fixed content. If we want the <i>italic</i>
+      elements to be replaced by <i>i</i> elements with the
+      same content we can rewrite the specification as follows:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//italic&lt;/fxt:pat&gt;
+    &lt;i&gt;&lt;fxt:apply/&gt;&lt;/i&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote> <p>The same XML input file as
+      <a href='#defaultXML'><b>above</b></a> is now transformed to:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;i&gt;Some text written in italic&lt;/i&gt;
+  &lt;bold&gt;
+    &lt;i&gt;Some text written in bold-italic&lt;/i&gt;
+  &lt;/bold&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote> <p>The transformation above
+      replaces even imbricated <i>italic</i> elements.</p>
+
+      <p>It is possible to select other sub-documents than the direct
+      sub-documents of the current document. For this purpose an
+      attribute <i>select</i> may be used, specifying an
+      <i>fxgrep</i> select pattern. The presence of the select
+      pattern in the <i>select</i> attribute, indicates that
+      the transformation proceeds recursively on the top-most
+      sub-documents of the current document which are matched by the
+      specified select pattern in the context of the current
+      sub-document. The selected sub-documents are processed in the
+      order in which they appear in the input.</p>
+
+      <p>The pattern can be also specified as the value of an
+      attribute <i>selectExp</i>, which must be an SML
+      expression of type <i>Unicode.Vector</i>.</p>
+
+      <p>Note that select patterns are conceptually speaking
+      <i>dynamic patterns</i>, i.e.  they are defined in the
+      dynamic context of the match node being currently
+      transformed. However, rather than dynamically evaluating the
+      select patterns, which can be very costly, fxt automatically
+      translate rules containing select patterns into rules using
+      fxgrep binary patterns. Binary patterns can be also directly
+      used in fxt transformations as described in the next
+      section.</p>
+
+
+      
+
+ 
+
+      <a name='BINSELECT'></a> 
+
+      <a name='Selecting_nodes_using_binary_patterns'>
+      
+    </a><h4>5.3.1 Selecting nodes using binary patterns</h4><p>
+
+        <p>In many cases the nodes to be selected within a rule for
+        the recursive application of the transformation rules on them
+        are already denoted by symbols in the match pattern of the
+        rule. These nodes can be selected using <a href='http://www.informatik.uni-trier.de/~aberlea/Fxgrep/pattern.html#PAT-BINARY'><b>binary
+        match patterns</b></a>. The nodes to be selected are specified
+        by preceding the corresponding symbols in the match pattern by
+        the <samp>%</samp> percent symbol. To recursively apply the
+        transformation on these nodes, an <samp>fxt:apply</samp>
+        element having a <samp>select</samp> attribute with an integer
+        value can be used. The integer value is the ordinal number of
+        the <samp>%</samp> in the pattern (the first <samp>%</samp>
+        occurrence has the ordinal number <samp>1</samp>). The
+        selected nodes are processed in the order in which they appear
+        in the input.</p>
+
+        <p>Suppose we have an XML document describing the output of
+        some compiler:</p>
+
+        <blockquote>
+      <pre>&lt;program&gt;
+  &lt;declarations&gt;
+    &lt;warning&gt;Variable i redeclared&lt;/warning&gt;
+  &lt;/declarations&gt;
+  &lt;error&gt;Unexpected assignment&lt;/error&gt;
+  &lt;main&gt;
+    &lt;error&gt;Undeclared variable j&lt;/error&gt;
+    &lt;warning&gt;Deprecated method doAll&lt;/warning&gt;
+  &lt;/main&gt;
+&lt;/program&gt;
+</pre>
+    </blockquote>
+
+        <p>If the compiler report contains both errors and warnings,
+        we want to output a list containing the errors in bold text
+        followed by the warnings in italic. One can achieve this using
+        binary patterns with the following transformation:</p>
+
+        <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;program[(//%error)][(//%warning)]&lt;/fxt:pat&gt;
+     &lt;list&gt;
+       Errors:
+         &lt;fxt:apply select="1"/&gt;
+       Warnings:
+         &lt;fxt:apply select="2"/&gt;
+     &lt;/list&gt;
+
+  &lt;fxt:pat&gt;//error&lt;/fxt:pat&gt;
+    &lt;b&gt;&lt;fxt:apply/&gt;&lt;/b&gt;
+
+  &lt;fxt:pat&gt;//warning&lt;/fxt:pat&gt;
+    &lt;i&gt;&lt;fxt:apply/&gt;&lt;/i&gt;
+
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+
+        <p>The output of the transformation on the XML input as above
+        is:</p>
+
+        <blockquote>
+      <pre>&lt;list&gt;
+       Errors:
+         &lt;b&gt;Unexpected assignment&lt;/b&gt;&lt;b&gt;Undeclared variable j&lt;/b&gt;
+       Warnings:
+         &lt;i&gt;Variable i redeclared&lt;/i&gt;&lt;i&gt;Deprecated method doAll&lt;/i&gt;
+     &lt;/list&gt;
+</pre>
+    </blockquote>
+
+      </p>
+  
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyContent'>
+      
+      
+    </a>
+    <a name='fxt:copyContent'>
+      
+    </a><h3>5.4. fxt:copyContent</h3><p>
+      <p>The <b>fxt:copyContent</b> element reproduces the sequence
+      of sub-documents representing the content of the current
+      sub-document. If the current sub-document is an
+      element, the result is the sequence of its sons. If the current
+      sub-document is a processing instruction the result is its
+      text content. If the current sub-document is some character data,
+      the result is the character data itself.</p>
+      <p>The following specification:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//italic&lt;/fxt:pat&gt;
+    &lt;i&gt;&lt;fxt:copyContent/&gt;&lt;/i&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>produces from the following input:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;italic&gt;
+    &lt;bold&gt;
+      &lt;italic&gt;Some text&lt;/italic&gt;
+    &lt;/bold&gt;
+  &lt;/italic&gt;
+&lt;/doc&gt;   
+</pre>
+    </blockquote>
+      <p>the following output:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;i&gt;
+    &lt;bold&gt;
+      &lt;italic&gt;Some text&lt;/italic&gt;
+    &lt;/bold&gt;
+  &lt;/i&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>Notice that when the first <i>italic</i> element is
+      transformed, <i>italic</i> is replaced by
+      <i>i</i> and its content is copied unchanged.</p>
+      <p><i>fxt:copyContent</i> may also be used with a select
+      pattern specified as the value of an attribute
+      <i>select</i>. In this case the top-most matches of the
+      specified pattern, considered in the context of the current
+      match are reproduced.</p> 
+
+
+      <a name='Selecting_nodes_using_binary_patterns'>
+      
+    </a><h4>5.4.1 Selecting nodes using binary patterns</h4><p>
+
+        <p>As in the case of <samp>fxt:apply</samp>, the nodes to be
+        output by an <samp>fxt:copyContent</samp> element can be
+        selected by using binary patterns as match patterns.</p>
+
+        <p>Suppose we have the following XML input document</p>
+
+        <blockquote>
+      <pre>&lt;company&gt;
+  &lt;url&gt;spice.girls&lt;/url&gt;
+  &lt;empl&gt;&lt;name&gt;Mel A.&lt;/name&gt;&lt;/empl&gt;
+  &lt;empl&gt;&lt;name&gt;Mel B.&lt;/name&gt;&lt;/empl&gt;
+  &lt;empl&gt;&lt;name&gt;Mel C.&lt;/name&gt;&lt;/empl&gt;
+&lt;/company&gt;
+</pre>
+    </blockquote>
+
+        <p>The transformation to produce a <samp>homepage</samp>
+        element for each employee can be specified as:</p>
+
+        <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//company[%url]/empl&lt;/fxt:pat&gt;
+    &lt;homepage&gt;
+      &lt;body&gt;Under construction. 
+         See the company's page:&lt;link&gt;&lt;fxt:copyContent select="1"/&gt;&lt;/link&gt;
+      &lt;/body&gt;
+    &lt;/homepage&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+
+        <p>Note that using binary patterns is the only way how one can
+        select sub-documents from the input document which are not
+        descendants of the current sub-document.</p>
+
+      </p>
+
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyType'>
+      
+      
+    </a>
+    <a name='fxt:copyType'>
+      
+    </a><h3>5.5. fxt:copyType</h3><p>
+      <p>The <b>fxt:copyType</b> element produces a
+      sub-document
+      with the same type as the current sub-document. The content of
+      the produced sub-document is given by the content of the
+      <i>fxt:copyType</i>. Possible attributes of the current
+      sub-document are not copied. If the current sub-document is an
+      element, an element with the same type is produced. If the current
+      sub-document is a processing instruction, a processing instruction
+      for the same target the produced, with a text content given by the
+      content of the 
+      <i>fxt:copyType</i> element, which in this case must contain
+      only character data. If the current sub-document is some text, the
+      text is reproduced in the output.</p>
+      <p>The following specification generates a transformation which
+      embeds all the elements having an attribute
+      <i>importance</i> with a value of <i>great</i>
+      in <i>bold</i> elements:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//*[@importance="great"]&lt;/fxt:pat&gt;
+    &lt;bold&gt;
+      &lt;fxt:copyType&gt;
+        &lt;fxt:apply/&gt;
+      &lt;/fxt:copyType&gt;
+    &lt;/bold&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>The following input:</p>
+      <blockquote>
+      <pre>&lt;manual&gt;
+  &lt;ch&gt;Unpacking&lt;/ch&gt;
+  &lt;ch importance="great"&gt;Before you begin&lt;/ch&gt;
+  &lt;ch&gt;Troubleshooting&lt;/ch&gt;
+&lt;/manual&gt;
+   
+  
+</pre>
+    </blockquote>
+      <p>is transformed by the generated transformation to:</p>
+      <blockquote>
+      <pre>&lt;manual&gt;
+  &lt;ch&gt;Unpacking&lt;/ch&gt;
+  &lt;bold&gt;
+      &lt;ch&gt;Before you begin&lt;/ch&gt;
+    &lt;/bold&gt;
+  &lt;ch&gt;Troubleshooting&lt;/ch&gt;
+&lt;/manual&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyAttributes'>
+      
+      
+    </a>
+    <a name='fxt:copyAttributes'>
+      
+    </a><h3>5.6. fxt:copyAttributes</h3><p>
+      <p>The <b>fxt:copyAttributes</b> element returns nothing,
+      i.e. the empty sequence of sub-documents, but acts through a
+      side-effect.If the current sub-document is an XML element,
+      <i>fxt:copyAttributes</i> copies the
+      attributes of the current sub-document in the list of attributes of the
+      surrounding element in
+      the output document. Attributes that are already present are
+      overwritten. Nothing happens if the current node is not an
+      element.</p>
+      <p>The following is the specification of a transformation that
+      replaces all elements with <i>a</i> elements retaining
+      the initial attributes:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//*&lt;/fxt:pat&gt;
+    &lt;a&gt;&lt;fxt:copyAttributes/&gt;&lt;fxt:apply/&gt;&lt;/a&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>The following input:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;x alfa="1" beta="2"&gt;
+    &lt;y gama="3"/&gt;
+  &lt;/x&gt;
+&lt;/doc&gt;
+   
+     
+</pre>
+    </blockquote>
+      <p>is transformed by the generated transformation to:</p>
+      <blockquote>
+      <pre>&lt;a&gt;
+  &lt;a beta='2' alfa='1'&gt;
+    &lt;a gama='3'&gt;&lt;/a&gt;
+  &lt;/a&gt;
+&lt;/a&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:addAttribute'>
+      
+      
+    </a>
+    <a name='fxt:deleteAttribute'>
+      
+      
+    </a>
+    <a name='fxt:replaceAttribute'>
+      
+      
+    </a>
+    <a name='fxt:addAttribute,_fxt:deleteAttribute_and_____fxt:replaceAttribute'>
+      
+    </a><h3>5.7. fxt:addAttribute, fxt:deleteAttribute and     fxt:replaceAttribute</h3><p>
+      <p>The <b>fxt:addAttribute</b>,
+      <b>fxt:deleteAttribute</b> and
+      <b>fxt:replaceAttribute</b> elements add, delete and
+      replace respectively attributes in the list of attributes of the
+      surrounding element in the output
+      document.</p>
+      <p><i>fxt:addAttribute</i>
+      must provide the name and the value of the attribute to be
+      inserted. These may be provide directly as values for the
+      attributes <i>name</i> and <i>val</i>
+      respectively, or alternatively as SML expressions of type
+      <i>Unicode.Vector</i> as values for the attributes
+      <i>nameExp</i> and <i>valExp</i>
+      respectively. Here is an
+      action inserting an attribute named
+      <i>degrees</i> having as value the string "12" followed
+      by the sign for Celsius degree.</p>
+      <blockquote>
+      <pre>&lt;fxt:addAttribute 
+  name='degrees' 
+  valExp='concatVectors (String2Vector "12",#[0wx2103])'/&gt;
+</pre>
+    </blockquote>
+      <p>If an attribute with the same name is already present in the
+      list of attributes of the element where the new attribute is to
+      be added, the old value is overwritten by the specified
+      value. Nothing happens if the current node is not an
+      element.</p>
+      <p>Similarly, <i>fxt:replaceAttribute</i>
+      changes the value of the attribute indicated by the
+      <i>name</i> or <i>nameExp</i> attribute with the
+      value indicated by the
+      <i>val</i> or <i>valExp</i> attribute. The list
+      of attributes remains
+      unchanged if the current node has no attribute with the
+      specified name.</p>
+      <p>The <i>fxt:deleteAttribute</i> removes the attribute
+      with the name specified by the <i>name</i> or
+      <i>nameExp</i> attribute
+      from the attribute list of the surrounding element in the
+      output.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:current'>
+      
+      
+    </a>
+    <a name='fxt:current'>
+      
+    </a><h3>5.8. fxt:current</h3><p>
+      <p>The <b>fxt:current</b> element produces an exact copy
+      of the current sub-document.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyTag'>
+      
+      
+    </a>
+    <a name='fxt:copyTag'>
+      
+    </a><h3>5.9. fxt:copyTag</h3><p>
+      <p>If the current sub-document is an XML element,
+      <b>fxt:copyTag</b> produces an element
+      with the same type, the same attributes and a content specified
+      by the content of the
+      <i>fxt:copyTag</i> element. An exception is thrown at
+      transformation time if the current sub-document is not an
+      element. It is thus a potential error if <i>fxt:copyTag</i>
+      appears in a sequence of actions corresponding to a pattern that
+      matches something else than an element.</p>
+      <p>Instead of copying the current element node and explictly including
+      its attributes:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyType&gt;
+  &lt;fxt:copyAttributes/&gt;
+  .....
+&lt;/fxt:copyType&gt;
+</pre>
+    </blockquote>
+      <p>one could write:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTag&gt;
+  .....
+&lt;/fxt:copyTag&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyTagApply'>
+      
+      
+    </a>
+    <a name='fxt:copyTagApply'>
+      
+    </a><h3>5.10. fxt:copyTagApply</h3><p>
+      <p>If the current sub-document is an element, the
+      <b>fxt:copyTagApply</b> element produces an element
+      with the same type, the same attributes and a content
+      obtained as the
+      concatenation of the sub-documents resulting from recursively applying
+      the transformation on the content of the current element.
+      The content is obtained in this case as by an <i>fxt:apply</i>
+      element. If the current sub-document is not an element
+      (i.e. it is either some text or a processing
+       instruction) <i>fxt:copyTagApply</i> produces a
+       copy of the current sub-document.</p>
+      <p>Thus, if the current sub-document is an XML element the
+      following sequence:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTag&gt;
+  &lt;fxt:apply/&gt;
+&lt;/fxt:copyTag&gt;
+</pre>
+    </blockquote>
+      <p>can be shorten to:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTagApply/&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:copyTagAddAttribute'>
+      
+      
+    </a>
+    <a name='fxt:copyTagDeleteAttribute'>
+      
+      
+    </a>
+    <a name='fxt:copyTagReplaceAttribute'>
+      
+      
+    </a>
+    <a name='fxt:copyTagDeleteAttribute,_fxt:copyTagAddAttribute_and_____fxt:copyTagReplaceAttribute'>
+      
+    </a><h3>5.11. fxt:copyTagDeleteAttribute, fxt:copyTagAddAttribute and     fxt:copyTagReplaceAttribute</h3><p>
+      <p>The <i>fxt</i> elements presented in this subsection
+      are useful shortcuts for the case when the current sub-document
+      is an XML element.</p>
+      <p>The current element can be copied together with its attributes
+      and a new attribute can be added with
+      <b>fxt:copyTagAddAttribute</b>. The name and the value of
+      the new attribute may be specified as in the case of
+      <i>fxt:addAttribute</i> directly as values for the
+      <i>name</i> and <i>val</i> attributes, or as SML
+      expressions specified as values of <i>nameExp</i> and
+      <i>valExp</i> attributes. The content of
+      the produced node is given by the content of the
+      <i>fxt:copyTagAddAttribute</i> element. Thus:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTag&gt;
+  &lt;fxt:addAttribute name="attributeName" val="attributeValue"/&gt;
+  ....
+&lt;/fxt:copyTag&gt;
+</pre>
+    </blockquote>
+      <p>can be replaced by:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTagAddAttribute name="attributeName" val="attributeValue"&gt;
+  ....
+&lt;/fxt:copyTagAddAttribute&gt;
+</pre>
+    </blockquote>
+      
+      <p>Similarly:</p>
+      
+      <blockquote>
+      <pre>&lt;fxt:copyTag&gt;
+  &lt;fxt:deleteAttribute name="attributeName"/&gt;
+  ....
+&lt;/fxt:copyTag&gt;
+</pre>
+    </blockquote>
+      <p>can be replaced by:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTagDeleteAttribute name="attributeName"&gt;
+  ....
+&lt;/fxt:copyTagDeleteAtribute&gt;
+</pre>
+    </blockquote>
+      <p>and</p>
+      
+      <blockquote>
+      <pre>&lt;fxt:copyTag&gt;
+  &lt;fxt:replaceAttribute name="attributeName" val="attributeValue"/&gt;
+  ....
+&lt;/fxt:copyTag&gt;
+</pre>
+    </blockquote>
+      <p>can be shorten to:</p>
+      <blockquote>
+      <pre>&lt;fxt:copyTagReplaceAttribute name="attributeName" val="attributeValue"&gt;
+  ....
+&lt;/fxt:copyTagReplaceAtribute&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:tag'>
+      
+      
+    </a>
+    <a name='Producing_elements_with_computed_names'>
+      
+    </a><h3>5.12. Producing elements with computed names</h3><p>
+      <p>An element sub-document whose name is computed at the
+      transformation time can be produced by the
+      <b>fxt:tag</b> action. The name of the element must
+      be specified as the value of an <i>fxt:name</i> attribute
+      and must evaluate to a Unicode
+      string, i.e. to <i>Unicode.Vector</i>. Other attributes
+      of the
+      <i>fxt:tag</i> element are copied in the output. The
+      content of the output element is given by the content of the
+      <i>fxt:tag</i> element.</p>
+      <p>The following is the
+      specification of a transformation that prefixes all the element
+      names by <i>myNamespace</i> and adds an attribute
+      <i>name</i> with a value <i>alfa</i> in their
+      attributes lists:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//*&lt;/fxt:pat&gt; 
+    &lt;fxt:tag 
+     fxt:name='concatVectors 
+	(String2Vector "myNamespace:",
+	(getElementType current))' 
+     name="alfa"&gt;
+      &lt;fxt:apply/&gt;
+    &lt;/fxt:tag&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>Running the generated transformation on the following
+      input:</p>
+      <blockquote>
+      <pre>&lt;a a="1"&gt;
+  &lt;b b="2"/&gt;
+&lt;/a&gt;
+</pre>
+    </blockquote>
+      <p>produces:</p>
+      <blockquote>
+      <pre>&lt;myNamespace:a name='alfa'&gt;
+  &lt;myNamespace:b name='alfa'&gt;&lt;/myNamespace:b&gt;
+&lt;/myNamespace:a&gt;
+</pre>
+    </blockquote>
+      <p>Notice: The use of <i>fxt:tag</i> makes sense when
+      the name of the element to be output is neither some constant
+      (case in which it can be directly written in the specification as it is
+      to
+      appear in the output) nor the name of the current element
+      (that could be output using <i>copyType</i> for
+      example).</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:text'>
+      
+      
+    </a>
+    <a name='Producing_computed_text'>
+      
+    </a><h3>5.13. Producing computed text</h3><p>
+      <p>Text computed at transformation time can be produced
+      using the <b>fxt:text</b> element. <i>fxt:text</i>
+      must have an attribute <i>code</i> whose value must evaluate
+      to a value of the type <i>Unicode.Vector</i>.</p>
+      <p>The following transformation replaces <i>today</i> elements
+      occurring anywhere in the input document by
+      the current time (in seconds since January 1, 1970):</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//today&lt;/fxt:pat&gt;
+     Seconds since January 1, 1970: 
+       &lt;fxt:text code='String2Vector (Time.toString (Time.now ()))'/&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>From the result for the following input:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;today/&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>which is:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  
+     Seconds since January 1, 1970: 
+       1001939178.783
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>you can exactly calculate the date when the output was
+      produced...:).</p>
+      <a name='fxt:currentText'>
+      
+      
+    </a>
+      <a name='fxt:currentText'>
+      
+    </a><h4>5.13.1 fxt:currentText</h4><p>
+        <p>If the current node is a text node or an element node
+        containing just text, then the current text, or the the current
+        text respectively could be output by:</p>
+        <samp>&lt;fxt:text code='getTextContent current'/&gt;</samp>
+        <p>The same is achieved by the <b>fxt:currentText</b>
+        shortcut:</p>
+        <samp>&lt;fxt:currentText/&gt;</samp>
+      </p>
+      <a name='fxt:ht'>
+      
+      
+    </a>
+      <a name='fxt:cr'>
+      
+      
+    </a>
+      <a name='fxt:sp'>
+      
+      
+    </a>
+      <a name='Spaces,_tabs_and_newlines'>
+      
+    </a><h4>5.13.2 Spaces, tabs and newlines</h4><p>
+        <p>A space can be output using
+        <b>fxt:sp</b>:</p>
+        <samp>&lt;fxt:sp/&gt;</samp>
+        <p>A horizontal tab can be output using
+        <b>fxt:ht</b>:</p>
+        <samp>&lt;fxt:ht/&gt;</samp>
+        <p>A carriage return can be output using
+        <b>fxt:cr</b>:</p>
+        <samp>&lt;fxt:cr/&gt;</samp>
+        <p>Note that <i>&lt;fxt:sp/&gt;</i>,<i>&lt;fxt:ht/&gt;</i> and
+        <i>&lt;fxt:cr/&gt;</i> are shortcuts for
+        <i>&lt;fxt:text
+        code='#[0wx0020]'/&gt;</i>,<i>&lt;fxt:text
+        code='#[0wx0009]'/&gt;</i> and
+        <i>&lt;fxt:text code='#[0wx000D]'/&gt;</i>
+        respectively.</p>
+      </p>
+      <a name='fxt:attribute'>
+      
+      
+    </a>
+      <a name='Outputting_attribute_values'>
+      
+    </a><h4>5.13.3 Outputting attribute values</h4><p>
+        <p>The value of an attribute of the current node, say with the
+        attribute name <i>attName</i> could be output by:</p>
+        <samp>&lt;fxt:text code='getAttribute (String2Vector
+        "attName") current'/&gt;</samp>
+        <p>The same is achieved by the <b>fxt:attribute</b>
+        shortcut, which expects the attribute name as the value of an
+        attribute <i>name</i> or as an SML expression of type
+        <i>Unicode.Vector</i> provided as a value for an
+        attribute <i>nameExp</i>:</p>
+        <samp>&lt;fxt:attribute name='attName'/&gt;</samp>
+      </p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:pi'>
+      
+      
+    </a>
+    <a name='Producing_processing_instructions'>
+      
+    </a><h3>5.14. Producing processing instructions</h3><p>
+      <p>Processing instructions can be output using the element
+      <b>fxt:pi</b>. The processor and the processing
+      instruction itself can be specified either directly as values
+      for the
+      <i>processor</i> and <i>data</i> attributes
+      respectively, or as SML expressions of type
+      <i>Unicode.Vector</i> provided as values
+      for the <i>processorExp</i> and <i>dataExp</i>
+      attributes respectively.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:global'>
+      
+      
+    </a>
+    <a name='fxt:push'>
+      
+      
+    </a>
+    <a name='fxt:set'>
+      
+      
+    </a>
+    <a name='fxt:get'>
+      
+      
+    </a>
+    <a name='fxt:pop'>
+      
+      
+    </a>
+    <a name='fxt:inc'>
+      
+      
+    </a>
+    
+    
+    
+    
+    
+    <a name='Using_global_variables'>
+      
+    </a><h3>5.15. Using global variables</h3><p>
+      <p><i>fxt</i> permits the use of variables organized as
+      stacks with global visibility.  The variables must be declared
+      before the first
+      <i>fxt:pat</i> using an
+      <b>fxt:global</b> element. This element must have an
+      attribute <i>name</i> and an attribute
+      <i>type</i>. The <i>name</i> attribute specifies
+      the name of the stack variable, and must be a valid SML
+      identifier. The <i>type</i> attribute
+      specifies the type of the elements in the stack variable. This
+      might be one of the <i>int</i>, <i>real</i>,
+      <i>bool</i> or <i>string</i> SML types, the
+      <i>Tree</i> or <i>Forest</i> type from the FDM, 
+      or some SML user defined type. 
+      The <i>fxt:global</i> element may have an attribute
+      <i>toForest</i> whose value must be a
+      conversion function
+      from the declared type to <i>Forest</i>. This function
+      is in this case used when values from the stack are to be inserted in
+      the output document. If no <i>toForest</i> attribute is
+      specified and the declared type is other than
+      <i>int</i>, <i>real</i>,
+      <i>bool</i>, <i>string</i>, <i>Tree</i>
+      or <i>Forest</i>, then nothing is output when a value
+      from that stack is to be inserted in the output.</p>
+      <p>A value can be pushed onto a stack using the
+      <b>fxt:push</b> element. <i>fxt:push</i> must have
+      an attribute <i>name</i> containing the name of the
+      stack variable and an attribute <i>val</i> whose value
+      must evaluate to a value of the type declared for the variable
+      <i>name</i>.</p>
+      <p>The value on the top of a stack can be reproduced in
+      the output using the <b>fxt:get</b>
+      element. <i>fxt:get</i> must have an attribute
+      <i>name</i> specifying the name of the stack
+      variable. If a value of a <i>toForest</i> was specified
+      as a conversion function to a forest when the variable was
+      declared, then the forest obtained by applying the conversion on
+      the value is output.  Otherwise, if the value has type
+      <i>string</i>, the string is output. If the value has
+      type <i>int</i>, <i>real</i> or
+      <i>bool</i>, a string representation for the
+      <i>int</i>, <i>real</i> or <i>bool</i>
+      respectively is output. If the element has type
+      <i>Tree</i> or type <i>Forest</i>, the tree
+      or the forest respectively is output. If the stack is empty an
+      exception is thrown.</p>
+      <p><b>fxt:pop</b> pops off the value from the top of a stack. An
+      attribute <i>name</i> is required to specify the name of
+      the stack variable. If the stack is empty an exception is
+      thrown.</p>
+
+      <p>The value on top of a stack can be modified using
+      <b>fxt:set</b>. An attribute <i>name</i> must
+      specify the name of the stack variable to be modified. An
+      attribute <i>val</i> must specify the new value to
+      replace the value on top as a piece of SML code. If the stack is
+      empty an exception is thrown.</p>
+
+      <p><b>fxt:inc</b> may be used to increment the value on
+      top of the stack (provided this has integer type). The name of
+      the variable must be specified as the value of an attribute
+      <i>name</i>.</p>
+
+      <p>The following exemplifies the use of the
+      <i>fxt</i> actions introduced above. The specification
+      generates a transformation that given an XML document containing
+      imbricated <i>li</i> elements (list items),
+      adds before every <i>li</i> an integer representing
+      the number of the list item on its imbrication level:</p>
+      <a name='LISTCOUNT1'></a>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:global name="i" type="int"/&gt;
+  &lt;fxt:push name="i" val="0"/&gt;
+
+  &lt;fxt:pat&gt;//li&lt;/fxt:pat&gt;
+    &lt;fxt:get name="i"/&gt;:
+      &lt;fxt:copyTag&gt;
+        &lt;fxt:inc name="i"/&gt;
+        &lt;fxt:push name="i" val="0"/&gt;
+        &lt;fxt:apply/&gt;
+        &lt;fxt:pop name="i"/&gt;
+      &lt;/fxt:copyTag&gt;
+
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>A global stack <i>i</i> containing integers is
+      declared and a zero is pushed onto the stack. Whenever an
+      <i>li</i> element is transformed, the value on top of
+      the stack is output using <i>fxt:get</i>. The
+      <i>li</i> tag is copied, and before proceeding with the
+      transformation to the sons, the value on top of the stack,
+      representing the counter for the current imbrication level is
+      incremented and a new value of zero is pushed onto the stack for
+      the next imbrication level. The value is popped off the stack
+      after the sons are transformed.</p>
+      <p>The following input:</p>
+      <a name='LC1INPUT'></a>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  &lt;li&gt;
+    &lt;li&gt;
+      &lt;li&gt;a&lt;/li&gt;
+      &lt;li&gt;b&lt;/li&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;li&gt;e&lt;/li&gt;
+    &lt;/li&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;li&gt;g&lt;/li&gt;
+    &lt;li&gt;h&lt;/li&gt;
+    &lt;li&gt;i&lt;/li&gt;
+  &lt;/li&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>is transformed to:</p>
+      <blockquote>
+      <pre>&lt;doc&gt;
+  0:
+      &lt;li&gt;
+    0:
+      &lt;li&gt;
+      0:
+      &lt;li&gt;a&lt;/li&gt;
+      1:
+      &lt;li&gt;b&lt;/li&gt;
+    &lt;/li&gt;
+    1:
+      &lt;li&gt;
+      0:
+      &lt;li&gt;e&lt;/li&gt;
+    &lt;/li&gt;
+  &lt;/li&gt;
+  1:
+      &lt;li&gt;
+    0:
+      &lt;li&gt;g&lt;/li&gt;
+    1:
+      &lt;li&gt;h&lt;/li&gt;
+    2:
+      &lt;li&gt;i&lt;/li&gt;
+  &lt;/li&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      <p>The next example illustrate the use of 
+      <i>Tree</i> variables.  Consider a document having
+      <i>group</i> elements which contains a
+      <i>chief</i> element and some <i>employee</i>
+      elements in this order. We want to rearrange the document such
+      that <i>group</i> elements contain only
+      <i>employee</i> elements, and that each employee has the
+      <i>chief</i> element for the chief in her group. The
+      specification to generate this transformation is:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:global name="chief" type="Tree"/&gt;
+
+  &lt;fxt:pat&gt;//group/chief&lt;/fxt:pat&gt;
+    &lt;fxt:push name="chief" val="current"/&gt;
+
+  &lt;fxt:pat&gt;//group/employee&lt;/fxt:pat&gt;
+    &lt;fxt:copyTag&gt;
+      &lt;fxt:get name="chief"/&gt;
+      &lt;fxt:apply/&gt;
+    &lt;/fxt:copyTag&gt;
+
+  &lt;fxt:pat&gt;//group[_chief_(employee)*_]&lt;/fxt:pat&gt;
+    &lt;fxt:copyTagApply/&gt;
+    &lt;fxt:pop name="chief"/&gt;
+&lt;/fxt:spec&gt;
+    
+</pre>
+    </blockquote> 
+      <p>The generated transformation transforms the following
+      input:</p> 
+      <blockquote>
+      <pre>&lt;groups&gt;
+  &lt;group&gt;
+     &lt;chief&gt;
+       &lt;name&gt;Tim&lt;/name&gt;
+       &lt;id&gt;21&lt;/id&gt;
+     &lt;/chief&gt;
+     &lt;employee&gt;
+       &lt;name&gt;Sandra&lt;/name&gt;
+       &lt;id&gt;12&lt;/id&gt;
+     &lt;/employee&gt;
+     &lt;employee&gt;
+       &lt;name&gt;George&lt;/name&gt;
+       &lt;id&gt;64&lt;/id&gt;
+     &lt;/employee&gt;
+  &lt;/group&gt;
+&lt;/groups&gt;
+</pre>
+    </blockquote> 
+      <p>to:</p>
+      <blockquote>
+      <pre>&lt;groups&gt;
+  &lt;group&gt;
+     
+     &lt;employee&gt;&lt;chief&gt;
+       &lt;name&gt;Tim&lt;/name&gt;
+       &lt;id&gt;21&lt;/id&gt;
+     &lt;/chief&gt;
+       &lt;name&gt;Sandra&lt;/name&gt;
+       &lt;id&gt;12&lt;/id&gt;
+     &lt;/employee&gt;
+     &lt;employee&gt;&lt;chief&gt;
+       &lt;name&gt;Tim&lt;/name&gt;
+       &lt;id&gt;21&lt;/id&gt;
+     &lt;/chief&gt;
+       &lt;name&gt;George&lt;/name&gt;
+       &lt;id&gt;64&lt;/id&gt;
+     &lt;/employee&gt;
+  &lt;/group&gt;
+&lt;/groups&gt;
+</pre>
+    </blockquote>
+
+      <p>The stack variables can also be used within SML code. Their
+      names must be prefixed by <i>G</i> (i.e a global named <i>i</i>
+      is referred <i>G.i</i> within SML code). The stack variables can be
+      manipulated using the SML functions from the
+      <i>Globals</i> with the following signature:</p>
+
+      <blockquote>
+      <pre>signature GLOBALS =
+  sig
+    type 'a Stack
+    val isEmpty : 'a Stack -&gt; bool
+    val push : 'a Stack -&gt; 'a -&gt; unit
+    val pop : 'a Stack -&gt; 'a
+    val get : 'a Stack -&gt; 'a
+    val set : 'a Stack -&gt; 'a -&gt; unit
+
+    val int2Forest : int Stack -&gt; Fdm.Forest
+    val bool2Forest : bool Stack -&gt; Fdm.Forest
+    val real2Forest : real Stack -&gt; Fdm.Forest
+    val string2Forest : string Stack -&gt; Fdm.Forest
+    val Tree2Forest : Fdm.Tree Stack -&gt; Fdm.Forest
+    val Forest2Forest : Fdm.Forest Stack -&gt; Fdm.Forest
+  end
+</pre>
+    </blockquote>
+      <p>where:</p>
+      <dl>
+        <dt><samp>isEmpty</samp></dt> 
+        <dd>returns true if the stack given as
+        argument is empty.</dd>
+        <dt><samp>push</samp></dt>
+        <dd>given a stack and a value, pushes the value on top of the stack.</dd>
+        <dt><samp>pop</samp></dt>
+        <dd>given a stack pops off and returns the value from the top of the
+        stack. May raise an exception if the stack is empty.</dd>
+        <dt><samp>get</samp></dt>
+        <dd>returns the value from the top of the stack given as
+        argument. May raise an exception if the stack is empty.</dd>
+        <dt><samp>set</samp></dt>
+        <dd>Modifies the value on top of the stack given as the first
+        argument to the value given as the second argument. May raise an
+        exception if the stack is empty.</dd>
+      </dl>
+
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:setForest'>
+      
+      
+    </a>
+    <a name='fxt:pushForest'>
+      
+      
+    </a>
+    <a name='fxt:setForest_and_fxt:pushForest'>
+      
+    </a><h3>5.16. fxt:setForest and fxt:pushForest</h3><p>
+      <p>Values of type <i>Forest</i> can be pushed or set as
+      described in the previous section using <i>fxt:set</i> or
+      <i>fxt:push</i> respectively. The value must then be
+      indicated as the value of an attribute <i>val</i>, which
+      must evaluate to a <i>Forest</i>.</p>
+      <p>A <i>Forest</i> value can be also constructed and
+      pushed or set, using the actions <b>fxt:pushForest</b> or
+      <b>fxt:setForest</b>
+      respectively. <i>fxt:pushForest</i> and
+      <i>fxt:setForest</i> must have an attribute
+      <i>name</i> specifying the name of the global on top of
+      which the forest value is to be pushed or set. The forest value
+      is specified as the content of the elements
+      <i>fxt:pushForest</i> or <i>fxt:setForest</i>
+      which can consist of any sequence of <i>fxt</i> actions.</p>
+      <p>The following is the specification of a transformation that
+      adds at the end of an <i>xhtml</i> document the list of
+      links to the anchors in the document:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:global name="index" type="Forest"/&gt;
+
+  &lt;fxt:pat&gt;xhtml&lt;/fxt:pat&gt;
+    &lt;fxt:push name="index" val="emptyForest"/&gt;
+    &lt;fxt:copyTagApply/&gt;
+    &lt;fxt:pop name="index"/&gt;
+
+  &lt;fxt:pat&gt;//a[@name]&lt;/fxt:pat&gt;
+    &lt;fxt:setForest name="index"&gt;
+      &lt;fxt:get name="index"/&gt;
+      &lt;a&gt;
+        &lt;fxt:attribute name='name'/&gt;
+        &lt;fxt:addAttribute 
+           name='href'
+           val='concatVectors
+		 (String2Vector "#",
+                 (getAttribute (String2Vector "name") current))'/&gt;
+      &lt;/a&gt;
+    &lt;/fxt:setForest&gt;
+    &lt;fxt:copyTagApply/&gt;
+
+  &lt;fxt:pat&gt;//index&lt;/fxt:pat&gt;
+     &lt;p&gt;Index:&lt;/p&gt;
+     &lt;p&gt;&lt;fxt:get name='index'/&gt;&lt;/p&gt;
+
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>The following input document:</p>
+      <blockquote>
+      <pre>&lt;xhtml&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name="a1"/&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name="a2"/&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name="a3"/&gt;
+
+   &lt;p&gt;That was it.&lt;/p&gt;
+
+   &lt;index/&gt;
+&lt;/xhtml&gt;   
+</pre>
+    </blockquote>
+      <p>is transformed to:</p>
+      <blockquote>
+      <pre>&lt;xhtml&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name='a1'&gt;&lt;/a&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name='a2'&gt;&lt;/a&gt;
+   &lt;p&gt;Text&lt;/p&gt;
+   &lt;a name='a3'&gt;&lt;/a&gt;
+
+   &lt;p&gt;That was it.&lt;/p&gt;
+
+   &lt;p&gt;Index:&lt;/p&gt;&lt;p&gt;&lt;a href='concatVectors    (String2Vector "#",                  (getAttribute (String2Vector "name") current))'&gt;
+        a1
+        
+      &lt;/a&gt;&lt;a href='concatVectors    (String2Vector "#",                  (getAttribute (String2Vector "name") current))'&gt;
+        a2
+        
+      &lt;/a&gt;&lt;a href='concatVectors    (String2Vector "#",                  (getAttribute (String2Vector "name") current))'&gt;
+        a3
+        
+      &lt;/a&gt;&lt;/p&gt;
+&lt;/xhtml&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='Conditional_processing'>
+      
+    </a><h3>5.17. Conditional processing</h3><p>
+      <a name='fxt:if'>
+      
+      
+    </a>
+      <a name='fxt:if'>
+      
+    </a><h4>5.17.1 fxt:if</h4><p>
+        <p>The <b>fxt:if</b> element can be used if a sequence
+        of actions should be executed only if some condition is
+        fulfilled. The condition must be specified as the value of an
+        attribute <i>test</i> of the <i>fxt:if</i>
+        element. This value must evaluate to a
+        boolean. The sequence of actions is specified as the content
+        of <i>fxt:if</i>.  If the test value evaluates to
+        true,
+        the output result is given by the
+        content of <i>fxt:if</i>. Otherwise, the output result
+        is empty.</p> 
+	<p>Consider the specification of the transformation that
+	numbered imbricated list items presented <a href='#LISTCOUNT1'><b>above</b></a>. If we want to output
+	only the first two items from any list we must modify the
+	specification as follows:</p>
+        <a name='LISTCOUNT2'></a>
+        <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:global name="i" type="int"/&gt;
+  &lt;fxt:push name="i" val="1"/&gt;
+
+  &lt;fxt:pat&gt;//li&lt;/fxt:pat&gt;
+    &lt;fxt:if test='(Globals.get G.i) &amp;lt; 3'&gt;
+      &lt;fxt:get name="i"/&gt;:
+        &lt;fxt:copyTag&gt;
+          &lt;fxt:set name="i" val='(Globals.get G.i)+1'/&gt;
+          &lt;fxt:push name="i" val="1"/&gt;
+          &lt;fxt:apply/&gt;
+          &lt;fxt:pop name="i"/&gt;
+        &lt;/fxt:copyTag&gt;
+    &lt;/fxt:if&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+        <p>Transforming the same document as <a href='#LC1INPUT'><b>above</b></a> we obtain:</p>
+        <blockquote>
+      <pre>&lt;doc&gt;
+  1:
+        &lt;li&gt;
+    1:
+        &lt;li&gt;
+      1:
+        &lt;li&gt;a&lt;/li&gt;
+      2:
+        &lt;li&gt;b&lt;/li&gt;
+    &lt;/li&gt;
+    2:
+        &lt;li&gt;
+      1:
+        &lt;li&gt;e&lt;/li&gt;
+    &lt;/li&gt;
+  &lt;/li&gt;
+  2:
+        &lt;li&gt;
+    1:
+        &lt;li&gt;g&lt;/li&gt;
+    2:
+        &lt;li&gt;h&lt;/li&gt;
+    
+  &lt;/li&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      </p>
+      <a name='fxt:switch'>
+      
+      
+    </a>
+      <a name='fxt:case'>
+      
+      
+    </a>
+      <a name='fxt:default'>
+      
+      
+    </a>
+      <a name='fxt:switch'>
+      
+    </a><h4>5.17.2 fxt:switch</h4><p>
+        <p>The <b>fxt:switch</b> element specifies a group of
+        conditions and a sequence of actions corresponding to each
+        condition. The first sequence of actions whose
+        corresponding condition evaluates to true is executed. A
+        sequence of actions must be specified, which is to be executed
+        when none of the conditions evaluates to true. A condition and
+        the corresponding sequence of actions is specified by an
+        <b>fxt:case</b> element in the content of
+        <i>fxt:switch</i>. The condition must be specified as
+        an attribute <i>test</i> of the
+        <i>fxt:case</i> and must evaluate to a boolean. The
+        corresponding sequence of actions is given by the content of
+        <i>fxt:case</i>. The sequence of actions to be
+        executed in case when none of the specified conditions
+        evaluates to true, must be given as the content of an
+        <b>fxt:default</b> element contained in the
+        <i>fxt:switch</i>.</p>
+        <p>Notice: An <i>fxt:switch</i> having just one element
+        <i>fxt:case</i> and one element
+        <i>fxt:default</i> provides the
+        <i>if-then-else</i> functionality.</p>
+ 
+        <p>The following is a transformation similar with the one <a href='#LISTCOUNT2'><b>above</b></a>, but where, if the list
+        contains more than two elements, a notice "And so on" is
+        added for each further element:</p>
+        <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:global name="i" type="int"/&gt;
+  &lt;fxt:push name="i" val="1"/&gt;
+
+  &lt;fxt:pat&gt;//li&lt;/fxt:pat&gt;
+    &lt;fxt:switch&gt;
+      &lt;fxt:case test='(Globals.get G.i) &amp;lt; 3'&gt;
+        &lt;fxt:get name="i"/&gt;:
+          &lt;fxt:copyTag&gt;
+            &lt;fxt:set name="i" val='(Globals.get G.i)+1'/&gt;
+            &lt;fxt:push name="i" val="1"/&gt;
+            &lt;fxt:apply/&gt;
+            &lt;fxt:pop name="i"/&gt;
+          &lt;/fxt:copyTag&gt;
+      &lt;/fxt:case&gt;
+      &lt;fxt:default&gt;
+        And so on...
+      &lt;/fxt:default&gt;
+    &lt;/fxt:switch&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+        <p>Transforming the same document as <a href='#LC1INPUT'><b>above</b></a> we obtain this time:</p>
+        <blockquote>
+      <pre>&lt;doc&gt;
+  1:
+          &lt;li&gt;
+    1:
+          &lt;li&gt;
+      1:
+          &lt;li&gt;a&lt;/li&gt;
+      2:
+          &lt;li&gt;b&lt;/li&gt;
+    &lt;/li&gt;
+    2:
+          &lt;li&gt;
+      1:
+          &lt;li&gt;e&lt;/li&gt;
+    &lt;/li&gt;
+  &lt;/li&gt;
+  2:
+          &lt;li&gt;
+    1:
+          &lt;li&gt;g&lt;/li&gt;
+    2:
+          &lt;li&gt;h&lt;/li&gt;
+    
+        And so on...
+      
+  &lt;/li&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+      </p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxt:sml'>
+      
+      
+    </a>
+    <a name='fxt:sml'>
+      
+    </a><h3>5.18. fxt:sml</h3><p>
+      <p><b>fxt:sml</b> can be used to evaluate an SML
+      expression. The SML expression must be specified as the value of a
+      <i>code</i> attribute. The <i>fxt:sml</i> element
+      returns nothing. Its effect should be some side-effect of the 
+      evaluation of the expression.</p>
+      <p>The following specification generates a transformation that
+      produces a copy of the input. The element names are printed in the
+      order in which they are considered by the transformation.</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//*&lt;/fxt:pat&gt;
+    &lt;fxt:sml 
+      code='print (Vector2String (getElementType current))'/&gt;
+    &lt;fxt:copyTagApply/&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>If the input is:</p>
+      <blockquote>
+      <pre>&lt;a&gt;
+  &lt;b&gt;
+    &lt;c/&gt;
+  &lt;/b&gt;
+  &lt;d/&gt;
+&lt;/a&gt;
+</pre>
+    </blockquote>
+      <p>the transformation will print at the standard output (supposing
+      that the output file is not the standard output) :</p>
+      <blockquote><pre>abcd</pre></blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+
+  <a name='fxt:key'>
+      
+      
+    </a>
+  <a name='fxt:copyKey'>
+      
+      
+    </a>
+  <a name='fxt:applyKey'>
+      
+      
+    </a>
+  <a name='fxt:table'>
+      
+      
+    </a>
+  <a name='fxt:getTableItems'>
+      
+      
+    </a>
+  <a name='Keys'>
+      
+    </a><h2>6. Keys</h2><p>
+    <p>Keys are a generalization of XML ID-s. They are useful when the
+    XML documents to be transformed have an inherent cross-reference
+    structure that can not be represented directly by the XML document
+    tree as for example in an XML representation of a graph. The key
+    mechanism allows to collect sub-documents in a table which can be
+    accessed via keys.</p> <p>To use this mechanism an
+    <b>fxt:key</b> element must be added to the prelude, before
+    any rule. A name for the table must be specified by a
+    <i>name</i> attribute. The sub-documents to be collected
+    are specified via an fxgrep pattern as the value of an attribute
+    <i>select</i>. If the key information is the value of an
+    attribute of the element at the root of the tree being stored, the
+    name of the attribute must be specified as the value of a
+    <i>key</i> attribute. Alternatively, the key may be
+    obtained from the tree being stored by an SML function of type
+    <i>Tree -> Unicode.Vector</i> which must be specified as
+    the value of an attribute <i>keyExp</i>.</p>
+
+    <p>To retrieve sub-documents associated with a key
+    the <b>fxt:copyKey</b> element must be used. An attribute
+    <i>name</i> must specify the name of the table. If the key
+    is a value of an attribute of
+    the current element, this may be specified by supplying the name
+    of the attribute as the value of a <i>key</i>
+    attribute. Alternatively, an
+    attribute <i>keyExp</i> can specify the key
+    as an SML expression having the type
+    <i>Unicode.Vector</i>.</p>
+    <p>Given the following XML input document:</p>
+    <blockquote>
+      <pre>&lt;graph&gt;
+  &lt;node id="1"&gt;Trier&lt;/node&gt;
+  &lt;node id="2"&gt;Bonn&lt;/node&gt;
+  &lt;edge from="1" to="2"/&gt;
+&lt;/graph&gt;
+</pre>
+    </blockquote>
+    <p>the following specifies a transformation which lists all the
+    connections between the cities:</p>
+    <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:key name='cities' select='//node' key='id' /&gt;
+
+  &lt;fxt:pat&gt;//edge&lt;/fxt:pat&gt;
+    There is a way from:
+      &lt;fxt:copyKey name='cities' key='from'/&gt;
+    to:
+     &lt;fxt:copyKey name='cities' key='to'/&gt;
+
+  &lt;fxt:pat&gt;default&lt;/fxt:pat&gt;
+    &lt;fxt:apply/&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+    <p>in the form:</p>
+    <blockquote>
+      <pre>
+    There is a way from:
+      &lt;node id='1'&gt;Trier&lt;/node&gt;
+    to:
+     &lt;node id='2'&gt;Bonn&lt;/node&gt;
+</pre>
+    </blockquote> 
+    <a name='fxt:applyKey'>
+      
+    </a><h3>6.1. fxt:applyKey</h3><p>
+      <p>It is possible to apply the transformation to the
+      sub-documents associated with a key using the
+      <b>fxt:applyKey</b>. The name of the table must be
+      specified as the value of an attribute
+      <i>name</i>. The key must be specified either as an SML
+      expression of the type <i>Unicode.Vector</i> provided as
+      the value of
+      an attribute
+      <i>keyExp</i> or as a Unicode string provided as the value of an
+      attribute <i>key</i> like in the following example:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:key name='cities' select='//node' key='id'/&gt;
+
+  &lt;fxt:pat&gt;/*&lt;/fxt:pat&gt;
+    Result = [&lt;fxt:applyKey name='cities' key='1'/&gt;]
+
+  &lt;fxt:pat&gt;default&lt;/fxt:pat&gt;
+    &lt;fxt:copyContent/&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>For the same input as above the output is:</p>
+      <blockquote>
+      <pre>
+    Result = [Trier]
+
+  
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='Tables_of_strings'>
+      
+    </a><h3>6.2. Tables of strings</h3><p>
+       <p>With <i>fxt:key</i> one can associate a key
+       contained in a sub-document with the
+       sub-document. <b>fxt:table</b> allows to associate a key
+       contained in a sub-document with some arbitrary Unicode string,
+       typically from the sub-document itself. Values for the
+       <i>name</i>,
+       <i>select</i> and <i>key</i> or
+       <i>keyExp</i> attributes must be
+       specified as for <i>fxt:key</i>. Furthermore an
+       <i>item</i> attribute must specify a function that when
+       applied on the selected document produces the information to be
+       stored for the key in the table. To retrieve the information
+       stored in a table an <b>fxt:getTableItems</b> element
+       must be used, with attributes as for the
+       <i>fxt:copyKey</i> element. </p>
+       <p>Given the following input:</p>
+       <blockquote>
+      <pre>&lt;books&gt;
+  &lt;book id="1"&gt;How to write unmaintainable code&lt;/book&gt;
+  &lt;book id="2"&gt;Thinking in SML&lt;/book&gt;
+  &lt;book id="3"&gt;My first trillion&lt;/book&gt;
+  &lt;book id="4"&gt;XML-a quantitative approach&lt;/book&gt;
+  &lt;book id="5"&gt;Timetable&lt;/book&gt;
+  &lt;cite ref="1"/&gt;
+   &lt;a&gt;
+     &lt;cite ref="2"/&gt;
+   &lt;/a&gt;
+   &lt;b&gt;
+     &lt;c/&gt;
+     &lt;d&gt;
+       &lt;cite ref="5"/&gt;
+     &lt;/d&gt;
+   &lt;/b&gt;
+  &lt;f/&gt;
+&lt;/books&gt;
+</pre>
+    </blockquote>
+       <p>the following lists the titles of the referenced books:</p>
+       <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:table 
+     name='bookTitles'
+     select='//book' 
+     key='id'
+     item='getTextContent'/&gt;
+
+  &lt;fxt:pat&gt;//cite&lt;/fxt:pat&gt;
+    &lt;fxt:getTableItems 
+        name='bookTitles' key='ref'/&gt; was referenced.
+
+  &lt;fxt:pat&gt;default&lt;/fxt:pat&gt;
+    &lt;fxt:apply/&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+       <p>The output:</p>
+       <blockquote>
+      <pre>How to write unmaintainable code was referenced.
+
+  Thinking in SML was referenced.
+
+  Timetable was referenced.
+
+  
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+
+  <a name='fxt:arg'>
+      
+      
+    </a>
+  
+  <a name='Command_line_arguments'>
+      
+    </a><h2>7. Command line arguments</h2><p>
+    <p>The name of the input file with which a transformation is
+    invoked, is made available via a global
+    <b>inputFile</b>. <i>inputFile</i> contains at the
+    beginning of a transformation the string representing the name of
+    the input file, or "-" if input is read from the standard input.</p>
+    <p>If extra arguments from the command line are needed, these must
+    be declared before the
+    first <i>fxt:pat</i> element using an <b>fxt:arg</b>
+    element for each
+    of them. This
+    element must have an attribute <i>name</i> containing a
+    name for the argument. Values for these arguments must be provided
+    in the command line in the order in which the arguments are
+    declared.The declared arguments are made available via globals
+    having
+    the specified names. Each of these globals contains at the
+    beginning of the transformation the string value supplied for it
+    in the command line.</p>
+    <p>The use of arguments supplied in the command line is illustrated by the
+    following specification which generates a transformation that
+    expects two extra arguments in the command line. The first
+    argument specifies a header and the second a footer. The header
+    and the footer are to be inserted as a
+    <i>header</i> and a <i>footer</i> element
+    respectively, the <i>header</i> as the first and the
+    <i>footer</i> as the last element of the root element. The
+    string containing the name of the input file is also reproduced in
+    the header.</p>
+    <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:arg name="a"/&gt;
+  &lt;fxt:arg name="b"/&gt;
+
+  &lt;fxt:pat&gt;*&lt;/fxt:pat&gt;
+    &lt;fxt:copyTag&gt;
+      &lt;header&gt;&lt;fxt:get name="inputFile"/&gt; - &lt;fxt:get name="a"/&gt;&lt;/header&gt;
+      &lt;fxt:apply/&gt;
+      &lt;footer&gt;&lt;fxt:get name="b"/&gt;&lt;/footer&gt;
+    &lt;/fxt:copyTag&gt;
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+    <p>Consider as input:</p>
+    <blockquote>
+      <pre>&lt;doc&gt;
+   &lt;a/&gt;
+   &lt;b/&gt;
+&lt;/doc&gt;
+</pre>
+    </blockquote>
+    <p>If the generated shell script is <i>doit</i> and the
+    transformation is invoked with:</p>
+    <blockquote><pre>doit examples/test.xml MyHeader MyFooter</pre></blockquote>
+    <p>then the transformation output is:</p>
+    <blockquote>
+      <pre>&lt;doc&gt;&lt;header&gt;/home/psi/aberlea/fxtools/fxt/XMLDoc/examples/test.xml - MyHeader&lt;/header&gt;
+   &lt;a&gt;&lt;/a&gt;
+   &lt;b&gt;&lt;/b&gt;
+&lt;footer&gt;MyFooter&lt;/footer&gt;&lt;/doc&gt;
+</pre>
+    </blockquote>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='fxt:open'>
+      
+      
+    </a>
+  <a name='Importing_SML_code'>
+      
+    </a><h2>8. Importing SML code</h2><p>
+    <p>Anywhere in the specification where the value of an attribute
+    is required to
+    evaluate to an SML value (e.g. a boolean as the
+    <i>test</i> attribute in
+    <i>fxt:if</i> or <i>fxt:switch</i> elements,
+    <i>Unicode.Vector</i> as in the case of the
+    <i>name</i> attribute in <i>fxt:tag</i>), the user
+    may use SML code. The code can
+    be
+    entirely specified at the place where it is used. Sometimes,
+    however, it is more
+    convenient to collect it in a structure. 
+    To use code from some structure, a
+    declaration using an <b>fxt:open</b> element must be
+    used. An attribute <i>structure</i> must specify the name
+    of the structure. If the structure is not one of the SML built-in
+    structures or some of the structures provided by <i>fxt</i>, an attribute
+    <i>file</i> must indicate
+    the name of the file containing the structure. The variables
+    defined in
+    the structure may be used as non-qualified names, as the structure
+    will automatically be opened in the generated code.</p>
+    <p>Supposing we have written in a file <i>count.sml</i> a
+    structure named <i>Count</i> containing a function <i>count</i>
+    having the type <i>Tree -> int</i> a possible way to
+    use it is:</p>
+    <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:open file='count.sml' structure='Count'/&gt;
+  &lt;fxt:global name='i' val='0'/&gt;
+
+  &lt;fxt:pat&gt;default&lt;/fxt:pat&gt;
+    &lt;fxt:set name='i' val='count current'/&gt;
+    &lt;fxt:getInt name='i'/&gt;
+
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  
+  <a name='Pre-actions'>
+      
+    </a><h2>9. Pre-actions</h2><p>
+    <p><i>fxt</i> elements before the first
+    <i>fxt:pat</i> element can be used either to specify some
+    general features of the generated transformation as in the case of
+    <i>fxt:global</i>, <i>fxt:arg</i> or
+    <i>fxt:open</i> , or they can specify some actions to be
+    performed before the transformation begins (pre-actions). A
+    pre-action can be specified by one of the <i>fxt:push</i>,
+    <i>fxt:pop</i>, <i>fxt:set</i> or
+    <i>fxt:sml</i> elements.</p>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='Sorting,_filtering_and_finalizing_forests'>
+      
+    </a><h2>10. Sorting, filtering and finalizing forests</h2><p>
+    <p>Some <i>fxt</i> actions
+    can be supplied with a
+    <i>sort</i>, <i>test</i> or
+    <i>finalize</i> attribute, specifying how the forest
+    they are producing or the forest representing their content
+    is to be sorted, filtered or finalized in
+    the output respectively.</p>
+    <p>The actions producing a forest that can be sorted, filtered or
+    finalized in the output are: <i>fxt:apply</i>, 
+    <i>fxt:get</i> and
+    <i>fxt:copyContent</i>.</p>
+    <p>The actions producing an element whose content can be sorted,
+    filtered or finalized are:
+    <i>fxt:tag</i>, <i>fxt:copyType</i>,
+    <i>fxt:copyTagAddAttribute</i>,
+    <i>fxt:copyTagDeleteAttribute</i>,
+    <i>fxt:copyTagReplaceAttribute</i> and
+    <i>fxt:copyTag</i>.</p>
+    <p>The <i>fxt:setForest</i> and
+    <i>fxt:pushForest</i> elements may also contain the
+    <i>sort</i>, <i>test</i> or
+    <i>finalize</i> attributes which then refers to the forest
+    being stored.</p>
+   <a name='Sorting_forests'>
+      
+    </a><h3>10.1. Sorting forests</h3><p>
+      <p>If one of the actions enumerated above has an attribute
+      <i>sort</i>, then the output forest, in case the action
+      produces a forest, or the forest representing its content,in case
+      the action produces a tree, will be sorted in the output using a
+      specified sorting key.</p>
+      <p>The sorting key is given by the value of a
+      <i>sort</i> attribute which must evaluate to a function
+      of type
+      <i>Tree ->'a</i>.</p>
+      <p>An <i>ord</i> attribute, having a value of
+      either <i>ascending</i>, or <i>descending</i> may
+      specify the desired order. The default is the ascending order.</p>
+      <p>If defined for the type
+      <i>'a</i> (as for example the built-in
+      types int, char, string, real), the <i>&lt;</i> or
+      <i>&gt;</i> operators are used in the sorting. If
+      <i>&lt;</i> and <i>&gt;</i> are not defined for
+      <i>'a</i>, the
+      user must supply as the value of an attribute <i>lt</i>, a
+      function having the type <i>'a * 'a -> bool</i>, which
+      returns true if the first argument is less than the second. This
+      function is then used in the sorting. The user may provide a
+      value for the <i>lt</i> attribute even when
+      <i>&lt;</i> and <i>&gt;</i> are available for
+      the type <i>'a</i> if the relation order implied by them
+      is unsatisfying.</p>
+      <p>The use of the <i>sort</i> attribute is illustrated by
+      the following examples. First, the specification that generates
+      a transformation where a list of players is
+      sorted after their names:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//atp&lt;/fxt:pat&gt;
+    &lt;fxt:copyTag&gt;
+      &lt;fxt:apply 
+        sort='(fn t =&gt; 
+          if hasElementType (String2Vector "player") t 
+          then 
+           getTextContent 
+             (filterFirst 
+               (hasElementType 
+                  (String2Vector "name"))
+                (sons t))
+          else nullVector)'
+        lt='UnicodeVectorlt'/&gt;
+    &lt;/fxt:copyTag&gt; 
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>The following input:</p>
+      <blockquote>
+      <pre>&lt;atp&gt;
+  &lt;player&gt;
+    &lt;name&gt;Smith, John&lt;/name&gt;
+    &lt;points&gt;1200&lt;/points&gt;
+  &lt;/player&gt;
+  &lt;player&gt;
+    &lt;name&gt;Nastase, Ilie&lt;/name&gt;
+    &lt;points&gt;1500&lt;/points&gt;
+  &lt;/player&gt;
+  &lt;player&gt;
+    &lt;name&gt;McEnroe, John&lt;/name&gt;
+    &lt;points&gt;950&lt;/points&gt;
+  &lt;/player&gt;
+&lt;/atp&gt;
+</pre>
+    </blockquote>
+      <p>is transformed to:</p>
+      <blockquote>
+      <pre>&lt;atp&gt;
+  
+  
+  
+&lt;player&gt;
+    &lt;name&gt;McEnroe, John&lt;/name&gt;
+    &lt;points&gt;950&lt;/points&gt;
+  &lt;/player&gt;&lt;player&gt;
+    &lt;name&gt;Nastase, Ilie&lt;/name&gt;
+    &lt;points&gt;1500&lt;/points&gt;
+  &lt;/player&gt;&lt;player&gt;
+    &lt;name&gt;Smith, John&lt;/name&gt;
+    &lt;points&gt;1200&lt;/points&gt;
+  &lt;/player&gt;&lt;/atp&gt;
+</pre>
+    </blockquote>
+      <p>The players are sorted in descending order after their number of points
+      by the transformation produced from the following specification:</p>
+      <blockquote>
+      <pre>&lt;fxt:spec&gt;
+  &lt;fxt:pat&gt;//atp&lt;/fxt:pat&gt;
+    &lt;fxt:copyTag&gt;
+      &lt;fxt:apply 
+        sort='(fn t =&gt; 
+          if hasElementType (String2Vector "player") t 
+          then 
+            (String2Int 
+              (Vector2String
+                (getTextContent 
+                   (filterFirst 
+                     (hasElementType (String2Vector "points")) 
+                     (sons t))))) 
+          else 0)' 
+        ord='descending'/&gt;
+    &lt;/fxt:copyTag&gt; 
+&lt;/fxt:spec&gt;
+</pre>
+    </blockquote>
+      <p>For the same input as above the transformation produces:</p>
+      <blockquote>
+      <pre>&lt;atp&gt;&lt;player&gt;
+    &lt;name&gt;Nastase, Ilie&lt;/name&gt;
+    &lt;points&gt;1500&lt;/points&gt;
+  &lt;/player&gt;&lt;player&gt;
+    &lt;name&gt;Smith, John&lt;/name&gt;
+    &lt;points&gt;1200&lt;/points&gt;
+  &lt;/player&gt;&lt;player&gt;
+    &lt;name&gt;McEnroe, John&lt;/name&gt;
+    &lt;points&gt;950&lt;/points&gt;
+  &lt;/player&gt;
+  
+  
+  
+&lt;/atp&gt;
+</pre>
+    </blockquote>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='Filtering_and_finalizing_forests'>
+      
+    </a><h3>10.2. Filtering and finalizing forests</h3><p>
+      <p>A <i>filter</i> attribute whose content must evaluate
+      to a predicate over trees may specify that only the trees that
+      satisfy the predicate are to appear in the output forest.</p>
+      <p>A <i>finalize</i> attribute whose content must evaluate
+      to a function over forests returning a forest, may indicate
+      a final transformation over a forest before being output.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  
+  <a name='Reserved_names'>
+      
+    </a><h2>11. Reserved names</h2><p>
+    <p>The following are reserved names and should not be redefined by
+    the user: <i>current</i>,
+    <i>accumulatedAttributes</i>,
+    <i>prelucratedSons</i>, <i>eC</i>, <i>eC2</i>, <i>inputFile</i>, as well
+    as all the variable names defined in the FDM.</p>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='Handling_white_spaces'>
+      
+    </a><h2>12. Handling white spaces</h2><p>
+    <p><i>fxt</i> ignores white spaces occurring within
+    recognized <i>fxt</i> elements. Spaces occurring within
+    other elements are considered normal text and are reproduced in
+    the output.</p> <p>Extra white spaces can be generated, if
+    necessary, using <i>fxt:text</i>. For example to insert a
+    newline followed by a tab one could use:</p>
+    <blockquote><pre>&lt;fxt:text='String2Vector "\n\t"'&gt;</pre></blockquote>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='Error_reporting'>
+      
+    </a><h2>13. Error reporting</h2><p>
+    <p><i>fxt</i> may report XML parse errors,
+    <i>fxgrep</i> errors, <i>fxt</i> specification
+    errors, SML coding errors and
+    SML runtime errors.</p>
+    <a name='Parse_errors'>
+      
+    </a><h3>13.1. Parse errors</h3><p>
+       <p>Errors in the XML document containing the <i>fxt</i>
+       specification are reported in the generation phase. If an
+       error is found, the generation of the transformer
+       terminates.</p>
+       <p>Errors in the XML document to be transformed are reported in the
+       transformation phase. The transformation continues even if
+       errors are found, however the result
+       might not be the expected one.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='fxgrep_errors'>
+      
+    </a><h3>13.2. fxgrep errors</h3><p>
+      <p>If the specified patterns are not valid <i>fxgrep</i>
+      patterns an error is reported in the generation phase and the
+      generation terminates.</p>
+      <p>Notice: As the patterns are specified in an XML document,
+      special symbols like <i>&lt;</i>, <i>&gt;</i>
+      must be escaped as <i>&lt;</i>,
+      <i>&gt;</i>, etc.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='Specification_errors'>
+      
+    </a><h3>13.3. Specification errors</h3><p>
+      <p>Errors in the <i>fxt</i> specification are reported
+      in the generation phase. If an error is found, the generation
+      terminates.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+    <a name='SML_coding_and_runtime_errors'>
+      
+    </a><h3>13.4. SML coding and runtime errors</h3><p>
+      <p>SML coding errors are reported by the SML compiler at the
+      generation phase. The error messages of the compiler refer to
+      the sml files produced by the generator in the subdirectory
+      <i>TF</i>. The transformer itself is generated in a file
+      having the suffix <i>Fxt.sml</i>, where the generated
+      code is annotated with comments referring to the specification
+      used.</p>
+      <p>Runtime errors are reported by the SML runtime-system in the
+      transformation phase.</p>
+    </p>
+    <img src="Images/shadow-small.jpg" ALT="------------" width="100%">
+    
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+
+  <a name='Features_to_be_implemented_in_future_releases'>
+      
+    </a><h2>14. Features to be implemented in future releases</h2><p>
+    <p>Managing multiple input files and multiple specifications,
+    extending the pattern language, considering comments, CDATA
+    sections, entities, ID and IDREFS in the FDM are intended to be
+    implemented in future releases.</p>
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+  <a name='More_Elaborated_fxt_Examples'>
+      
+    </a><h2>15. More Elaborated fxt Examples</h2><p>
+    <ul>
+      <li><A HREF='chapter.tf'>chapter.tf</A> - the stylesheet used to
+          produce the html pages in the fxt distribution.</li>
+      <li><A HREF='extreme.tf'>extreme.tf</A> - produces html output
+          from XML documents conforming to the DTD for the XML Extreme
+          2002 conference.</li>
+    </ul>
+    To compile the stylesheets above you also need the file <a href='table.sml'>table.sml</a>.
+  </p>
+    <img src="Images/shadow-med.jpg" alt="------------" width="100%">
+    
+
+         
+
+	 <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p><h2>fxt actions index:</h2><table align='center' width='80%'>
+             <tr></tr><td><a href='#fxt:addAttribute'>fxt:addAttribute</a></td><td><a href='#fxt:cr'>fxt:cr</a></td><td><a href='#fxt:pop'>fxt:pop</a></td><tr></tr><td><a href='#fxt:apply'>fxt:apply</a></td><td><a href='#fxt:current'>fxt:current</a></td><td><a href='#fxt:push'>fxt:push</a></td><tr></tr><td><a href='#fxt:applyKey'>fxt:applyKey</a></td><td><a href='#fxt:currentText'>fxt:currentText</a></td><td><a href='#fxt:pushForest'>fxt:pushForest</a></td><tr></tr><td><a href='#fxt:arg'>fxt:arg</a></td><td><a href='#fxt:default'>fxt:default</a></td><td><a href='#fxt:replaceAttribute'>fxt:replaceAttribute</a></td><tr></tr><td><a href='#fxt:attribute'>fxt:attribute</a></td><td><a href='#fxt:deleteAttribute'>fxt:deleteAttribute</a></td><td><a href='#fxt:set'>fxt:set</a></td><tr></tr><td><a href='#fxt:case'>fxt:case</a></td><td><a href='#fxt:get'>fxt:get</a></td><td><a href='#fxt:setForest'>fxt:setForest</a></td><tr></tr><td><a href='#fxt:copyAttributes'>fxt:copyAttributes</a></td><td><a href='#fxt:getTableItems'>fxt:getTableItems</a></td><td><a href='#fxt:sml'>fxt:sml</a></td><tr></tr><td><a href='#fxt:copyContent'>fxt:copyContent</a></td><td><a href='#fxt:global'>fxt:global</a></td><td><a href='#fxt:sp'>fxt:sp</a></td><tr></tr><td><a href='#fxt:copyKey'>fxt:copyKey</a></td><td><a href='#fxt:ht'>fxt:ht</a></td><td><a href='#fxt:spec'>fxt:spec</a></td><tr></tr><td><a href='#fxt:copyTag'>fxt:copyTag</a></td><td><a href='#fxt:if'>fxt:if</a></td><td><a href='#fxt:switch'>fxt:switch</a></td><tr></tr><td><a href='#fxt:copyTagAddAttribute'>fxt:copyTagAddAttribute</a></td><td><a href='#fxt:inc'>fxt:inc</a></td><td><a href='#fxt:table'>fxt:table</a></td><tr></tr><td><a href='#fxt:copyTagApply'>fxt:copyTagApply</a></td><td><a href='#fxt:key'>fxt:key</a></td><td><a href='#fxt:tag'>fxt:tag</a></td><tr></tr><td><a href='#fxt:copyTagDeleteAttribute'>fxt:copyTagDeleteAttribute</a></td><td><a href='#fxt:open'>fxt:open</a></td><td><a href='#fxt:text'>fxt:text</a></td><tr></tr><td><a href='#fxt:copyTagReplaceAttribute'>fxt:copyTagReplaceAttribute</a></td><td><a href='#fxt:pat'>fxt:pat</a></td><tr></tr><td><a href='#fxt:copyType'>fxt:copyType</a></td><td><a href='#fxt:pi'>fxt:pi</a></td>
+           </table>
+
+         <p><img SRC="Images/shadow-big.jpg" ALT="-----------------" WIDTH="100%"></p>
+         <ADDRESS>
+           <A HREF='http://www.informatik.uni-trier.de/~aberlea/'>A. Berlea</A>
+          (<A HREF='mailto:aberlea@psi.uni-trier.de'>aberlea@psi.uni-trier.de</A>)
+         </ADDRESS>
+       </body>
+     </html>
