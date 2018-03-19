@@ -90,14 +90,14 @@ structure Fdm : FDM =
       (rev (Vector.foldli 
 	    (fn (i,t,l) => if (i=n) then l
 			   else t::l)
-	    [] (f,0,NONE)))
+	    [] f))
     fun deleteLast pred f =
       let
 	fun findLast f pred =
 	  Vector.foldli
 	  (fn (i,t,j) => if (pred t) then SOME i
 			 else j)
-	  NONE (f,0,NONE)
+	  NONE f
       in
 	case (findLast f pred) of
 	  SOME i => (true,deleteIth i f)

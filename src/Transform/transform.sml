@@ -86,7 +86,7 @@ structure Transform =
 		    val _ = Vector.appi 
 		      (fn (i,arg) => 
 		            print (indent^"    val _ = Globals.push "^Names.globalsStructure^"."^arg^" (Vector.sub (args,"^(Int.toString i)^"))\n")) 
-		      (Vector.fromList furtherArguments,0,NONE)
+		      (Vector.fromList furtherArguments)
 
 		    val _ = print (indent^"    val _ = Globals.push "^Names.globalsStructure^"."^Names.inputFile^" xmlInputFile\n")
 
@@ -166,13 +166,13 @@ structure Transform =
 			     (print (indent^(actionCase 0)));
 			     (
 			      if (l>1) then
-				Vector.appi 
+				VectorSlice.appi
 				(fn (index,action) =>
 				 (
 				  (print ((WriteUtil.writeComment indent ("generated from pattern: "^(Vector.sub(patterns,index))))^"\n"));
 				  (print (indent^"|"^(actionCase index)))
 				  ))
-				(actions,1,NONE)
+				(VectorSlice.slice(actions,1,NONE))
 			      else ()
 				)
 			     )
@@ -258,32 +258,32 @@ structure Transform =
 	  let
 	    fun useSilently s =
 	      let
-		val saved = (!Compiler.Control.Print.signatures,
-			     !Compiler.Control.Print.out)
+		val saved = (!Control.Print.signatures,
+			     !Control.Print.out)
 		fun done () = 
 		  let
-		    val _ = Compiler.Control.Print.signatures := #1 saved
-		    val _ = Compiler.Control.Print.out := #2 saved
+		    val _ = Control.Print.signatures := #1 saved
+		    val _ = Control.Print.out := #2 saved
 		  in
 		    ()
 		  end
 		val msg = ref ""
 	      in
-		(Compiler.Control.Print.out :=
+		(Control.Print.out :=
 		 {say = fn s => msg := (!msg)^s, flush = fn _ => ()});
-		(Compiler.Control.Print.signatures := 2);
-		(Compiler.Interact.useFile s; done ()) 
+		(Control.Print.signatures := 2);
+		(Backend.Interact.useFile s; done ())
 		handle _ => (done();raise (Exceptions.CompileError (!msg)))
 	      end
 
 	    fun use s =
 	      let
-		val saved = !Compiler.Control.Print.signatures
-		val _ = Compiler.Control.Print.signatures := 1
+		val saved = !Control.Print.signatures
+		val _ = Control.Print.signatures := 1
 		val _ = 
-		  (Compiler.Interact.useFile s)
+		  (Backend.Interact.useFile s)
 		  handle e => raise (Exceptions.CompileError "")
-		val _ = Compiler.Control.Print.signatures := saved
+		val _ = Control.Print.signatures := saved
 	      in
 		()
 	      end
@@ -302,7 +302,7 @@ structure Transform =
 	      prefix^Names.fxtStructure^".wrapper"^" "^
 	      prefix^Names.fxtStructure^".checkArgs"
 	    val inS = TextIO.openString exportCommand
-	    val _ = Compiler.Interact.useStream inS
+	    val _ = Backend.Interact.useStream inS
 	    val _ = TextIO.closeIn inS
 	  in
 	    ()
@@ -434,14 +434,14 @@ structure Transform =
 			 
 		       fun useStreamSilently s =
 			 let
-			   val saved = !Compiler.Control.Print.out
+			   val saved = !Control.Print.out
 			  fun done () = 
-			    Compiler.Control.Print.out := saved
+			    Control.Print.out := saved
 			  val _ =
-			    (Compiler.Control.Print.out :=
+			    (Control.Print.out :=
 			     {say = fn _ => (), flush = fn _ => ()});
 			 in
-			   (Compiler.Interact.useStream s; done ()) 
+			   (Backend.Interact.useStream s; done ())
 			   handle _ => (done();raise (Exceptions.CompileError command))
 			 end
 		       val inS = TextIO.openString command

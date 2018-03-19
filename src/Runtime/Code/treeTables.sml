@@ -33,7 +33,7 @@ structure TreeTables =
 	  case (HashTable.find table key) of
 	    SOME docs => HashTable.insert table (key,(i,matchTable)::docs) (* beware order*)
 	  | NONE => HashTable.insert table (key,[(i,matchTable)])
-	end) matchMap) (matchTableKeys,0,NONE)
+	end) matchMap) matchTableKeys
 
     fun lookupKey tableName keyName =
       let

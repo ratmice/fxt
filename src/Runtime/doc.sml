@@ -181,7 +181,7 @@ structure Doc =
 	  (fn (j,(_,matchMap,_),matches) =>
 	   case IntListMap.firsti matchMap of (* the first in map is the first in spec *)
 	     SOME (0,_) => ((j+i),table)::matches
-	   | _ => matches) nil (dynTable,0,NONE)
+	   | _ => matches) nil dynTable
       in
 	matches
       end

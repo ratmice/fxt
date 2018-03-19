@@ -146,9 +146,10 @@ structure Util =
 	    fun doit () = 
 		let
 		    val line = TextIO.inputLine inputStream
+		    fun helper(SOME line) = ((print (indent^line));doit ())
+		      | helper(NONE) = TextIO.closeIn inputStream
 		in
-		    if line = "" then TextIO.closeIn inputStream
-		    else ((print (indent^line));doit ())
+		    helper(line)
 		end
 	in
 	    doit()
@@ -162,9 +163,10 @@ structure Util =
 	    fun doit s = 
 		let
 		    val line = TextIO.inputLine inputStream
+		    fun helper(SOME line) = doit(s^line)
+		      | helper(NONE) = TextIO.closeIn inputStream
 		in
-		    if line = "" then ((TextIO.closeIn inputStream);s)
-		    else doit (s^line)
+		    helper(line)
 		end
 	in
 	    doit ""
@@ -173,4 +175,4 @@ structure Util =
     fun encPutString file s =
       Vector.foldl (fn (c,f) => Encode.encPutChar (f,c)) file (UniChar.String2Vector s)
 
-  end	
+  end

@@ -184,7 +184,7 @@ structure ParseSpec =
 					    if elIdx = patIdx then
 					      case t of 
 						MatchData.T_ELEM (_,_,#[(pos,MatchData.T_TEXT pat)]) =>
-						  (SOME (pos,pat),Vector.fromList (rev a),Vector.extract(f,i+1,NONE))
+						  (SOME (pos,pat),Vector.fromList (rev a),VectorSlice.vector (VectorSlice.slice(f,i+1,NONE)))
 					      | _  =>  raise 
 						  Exceptions.SpecificationError (pos,"fxt:pat element must have only text content")
 					    else doit (i+1) ((pos,t)::a)
@@ -350,7 +350,7 @@ structure ParseSpec =
 				 in
 				   (dynSelects,action)
 				 end)
-				(actions,0,NONE)
+				actions
 			    in
 			      ((stringTables,tables,preActs,toInclude,toOpen,
 				fxslGlobals,yetAnotherArguments),defaultAction,
@@ -381,7 +381,7 @@ structure ParseSpec =
 	    in
 	      dynSelects
 	    end))
-	  (parsedPatterns,0,NONE)
+	  parsedPatterns
 
 	val tab = GramTables.initXTable()
 	val (g,matchSpecs,intervals) = PatGrammar.Patterns2Grammar tab ps

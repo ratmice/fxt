@@ -7,9 +7,9 @@ signature UNICODE =
 	val toLargeWord : word -> Word32.word
 	val toLargeWordX : word -> Word32.word
 	val fromLargeWord : Word32.word -> word
-	val toLargeInt : word -> Int32.int
-	val toLargeIntX : word -> Int32.int
-	val fromLargeInt : Int32.int -> word
+	val toLargeInt : word -> LargeInt.int
+	val toLargeIntX : word -> LargeInt.int
+	val fromLargeInt : LargeInt.int -> word
 	val toInt : word -> int
 	val toIntX : word -> int
 	val fromInt : int -> word

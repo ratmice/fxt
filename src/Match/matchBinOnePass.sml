@@ -77,7 +77,7 @@ structure MatchBinOnePass =
 			 MatchBin.multiAddSecondaryMatches yTargets' matchTable dict j patNum
 		     in
 		       dict
-		     end) dict (targets,0,NONE)
+		     end) dict targets
 		in 
 		  doit (j1,dict,q1,i+1,j::siblings)
 		end

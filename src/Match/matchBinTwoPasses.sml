@@ -49,7 +49,7 @@ structure MatchBinTwoPasses =
 		    Vector.mapi
 		    (fn (i,carry) => 
 		     Transitions.getMatchInfo (ys,carry,Vector.sub(formulas,i)))
-		    (doMatch,0,NONE)
+		    doMatch
 		in 
 		  b before IntDict.setByKey(matchDict,qq,b)
 		end
@@ -89,7 +89,7 @@ structure MatchBinTwoPasses =
 			   MatchBin.multiAddSecondaryMatches yTargets' matchTable dict j patNum
 		       in
 			 dict
-		       end) dict (targets,0,NONE)
+		       end) dict targets
 		    val dict =
 		      MatchBin.multiMatchMapUnion matchTable (dict,dictT) secUnion Array.sub Array.update pat_of_y
 		    val i = i+1

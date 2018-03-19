@@ -17,7 +17,7 @@ structure MatchSimpleOnePass =
 	   if m then IntLists.addIntList (patNum,nums)
 	   else nums) 
 	  IntLists.emptyIntList 
-	  (matches1 q,0,NONE)
+	  (matches1 q)
 	   
 	val matchTable = Array.array (noNodes,(Fdm.emptyTree,IntLists.emptyIntList,nil))
 

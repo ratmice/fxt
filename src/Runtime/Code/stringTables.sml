@@ -34,7 +34,7 @@ structure StringTables =
 	  case (HashTable.find table key) of
 	    SOME docs => HashTable.insert table (key,item::docs)
 	  | NONE => HashTable.insert table (key,[item])
-	end) matchMap) (matchTable,0,NONE)
+	end) matchMap) matchTable
 
     fun lookupKey tableName keyName =
       let

@@ -55,7 +55,7 @@ structure MatchSimpleTwoPasses =
 		       if isPrimaryMatch then addIntList(i,nums) (* the first is 0 *)
 		       else nums
 		     end) emptyIntList
-		    (formulas,0,NONE)
+		    formulas
 		in 
 		  match before IntDict.setByKey (matchDict,qq,match)
 		end

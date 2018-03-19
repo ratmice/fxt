@@ -37,5 +37,7 @@ Group is
     Match/matchBinTwoPasses.sml
     Match/matchSimpleOnePass.sml
     Match/matchSimpleTwoPasses.sml
-    smlnj-lib.cm
-    fxgrep.cm
+    $/smlnj-lib.cm
+    $/basis.cm
+    $smlnj/compiler.cm
+    ../deps/fxgrep/src/fxgrep.cm

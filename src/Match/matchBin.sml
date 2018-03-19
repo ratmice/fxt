@@ -50,7 +50,7 @@ structure MatchBin =
 	 val _ = print "\n"
        in
 	 ()
-       end) (matchTable,0,NONE)
+       end) matchTable
 
     fun multiMatchMapUnion matchTable (matchMap1,matchMap2) secUnion sub update pat_of_y =
       IntListMap.unionWithi
@@ -176,5 +176,5 @@ structure MatchBin =
 	in
 	  IntListMap.insert (matchMap,y,(prim,sec))
 	end) matchMap ys) matchMap 
-      (targets,0,NONE)
+      targets
   end

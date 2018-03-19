@@ -45,16 +45,16 @@ signature FDM =
     val length : Forest -> int
     val lengthPred : (Tree -> bool) -> Forest -> int
     val sub : Forest * int -> Tree
-    val extract : Forest * int * int option -> Forest
+    (*val extract : Forest * int * int option -> Forest *)
     val concat : Forest list -> Forest
     val app : (Tree -> unit) -> Forest -> unit
     val map : (Tree -> 'a) -> Forest -> 'a vector
     val foldl : (Tree * 'a -> 'a) -> 'a -> Forest -> 'a
     val foldr : (Tree * 'a -> 'a) -> 'a -> Forest -> 'a
-    val appi : (int * Tree -> unit) -> Forest * int * int option -> unit
-    val mapi : (int * Tree -> 'a) -> Forest * int * int option -> 'a vector
-    val foldli : (int * Tree * 'a -> 'a) -> 'a -> Forest * int * int option -> 'a
-    val foldri : (int * Tree * 'a -> 'a) -> 'a -> Forest * int * int option -> 'a
+    val appi : (int * Tree -> unit) -> Forest -> unit
+    val mapi : (int * Tree -> 'a) -> Forest -> 'a vector
+    val foldli : (int * Tree * 'a -> 'a) -> 'a -> Forest -> 'a
+    val foldri : (int * Tree * 'a -> 'a) -> 'a -> Forest -> 'a
     val deleteAll : (Tree -> bool) -> Forest -> Forest
     val deleteFirst : (Tree -> bool) -> Forest -> bool * Forest
     val deleteFirstN : int -> (Tree -> bool) -> Forest -> int * Forest
