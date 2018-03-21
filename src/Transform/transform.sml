@@ -169,8 +169,8 @@ structure Transform =
 				VectorSlice.appi
 				(fn (index,action) =>
 				 (
-				  (print ((WriteUtil.writeComment indent ("generated from pattern: "^(Vector.sub(patterns,index))))^"\n"));
-				  (print (indent^"|"^(actionCase index)))
+				  (print ((WriteUtil.writeComment indent ("generated from pattern: "^(Vector.sub(patterns,index + 1))))^"\n"));
+				  (print (indent^"|"^(actionCase (index + 1))))
 				  ))
 				(VectorSlice.slice(actions,1,NONE))
 			      else ()
