@@ -21,13 +21,17 @@ FXT_LIBDIR     = ${PREFIX}/fxt
 ##############################################################################
 SML_BINDIR = /local/sml/bin
 SML_EXEC   = ${SML_BINDIR}/sml
+
 ##############################################################################
 # No need to change this for SML-NJ 110.0.6. For earlier or working versions  
 # 110.19 you might have to use the second or third line. This is the
 # compilation manager function for making with a named description file. 
 ##############################################################################
 #SML_MAKEDEF= val make = CM.make'
-SML_MAKEDEF= val make = CM.make
+SML_MAKEDEF= \
+val _ = (\#set (CM.Anchor.anchor \"fxp\")) (SOME \"$(PWD)/deps/fxgrep/deps/fxp/src\"); \
+val _ = (\#set (CM.Anchor.anchor \"fxgrep\")) (SOME \"$(PWD)/deps/fxgrep/src\"); \
+val make = CM.make
 #SML_MAKEDEF= fun make x = CM.make'{force_relink=true, group=x}
 
 ##############################################################################
@@ -58,7 +62,7 @@ SRC         = src
 INSTALL_PARAMS =  ${SRC}/Transform/Params/installParams.sml
 
 
-image.fxt: fxgrep.cm inst.params
+image.fxt: inst.params
 	@echo "Creating the ${PROG_NAME} heap image..."
 	echo "${SML_MAKEDEF}; make \"${SRC}/fxt.cm\"; \
 	      SMLofNJ.exportFn(\"${SRC}/_fxt\",Transform.transform)" | ${SML_EXEC}
@@ -66,9 +70,6 @@ image.fxt: fxgrep.cm inst.params
 arch.os:
 	${SML_BINDIR}/.arch-n-opsys | \
 	${SED} -e 's/^.*HEAP_SUFFIX=\(.*\)$$/\1/' > .arch-opsys
-
-fxgrep.cm: Makefile 
-	echo Alias ${FXGREP_LIBDIR}/fxgrep.cm > ${SRC}/fxgrep.cm
 
 fxt.sh: Makefile arch.os
 	${RM} fxt.sh
@@ -88,14 +89,13 @@ inst.dirs:
 	test -d ${FXT_BINDIR} || ${MKDIRHIER} ${FXT_BINDIR}	
 	test -d ${FXT_LIBDIR} || ${MKDIRHIER} ${FXT_LIBDIR}	
 
-inst.fxtlib: inst.dirs fxgrep.cm
+inst.fxtlib: inst.dirs
 	for dir in `${FIND} ${SRC} ${FXTLIB_PRUNE} -prune -o -type d -print`; do \
 	    ${MKDIRHIER} ${FXT_LIBDIR}/$${dir}; \
 	done;
 	for file in `${FIND} ${SRC} ${FXTLIB_PRUNE} -prune -o -name "*.cm" -print -o -name "*.y" -print -o -name "*.sml"  -print -o -name "*.sig" -print`; do \
 	    ${COPY} $${file} ${FXT_LIBDIR}/$${file}; \
 	done
-	rm -f ${FXT_LIBDIR}/fxgrep.cm
 	echo Group is > ${FXT_LIBDIR}/fxt.cm
 	echo "  "${SRC}/fxt.cm >> ${FXT_LIBDIR}/fxt.cm
 
@@ -120,5 +120,5 @@ uninstall: arch.os
 	-${RMDIR} ${FXT_BINDIR} ${FXT_LIBDIR} 
 
 clean:
-	-${RM} -f ${SRC}/_fx.* fxt.sh .arch-opsys ${SRC}/fxgrep.cm 
+	-${RM} -f ${SRC}/_fx.* fxt.sh .arch-opsys
 	-find ${SRC} -type d -name CM -print | xargs ${RM} -r 

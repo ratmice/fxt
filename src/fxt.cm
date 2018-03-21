@@ -40,4 +40,4 @@ Group is
     $/smlnj-lib.cm
     $/basis.cm
     $smlnj/compiler.cm
-    ../deps/fxgrep/src/fxgrep.cm
+    $fxgrep/fxgrep.cm
